@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  date_at: 2012-10-21 22:01:41
+  cover: 1.5
+  place_id: 1
+  pace_at: MyString
+  flayer: MyString
+  state: 1
+  description: MyString
+
+two:
+  name: MyString
+  date_at: 2012-10-21 22:01:41
+  cover: 1.5
+  place_id: 1
+  pace_at: MyString
+  flayer: MyString
+  state: 1
+  description: MyString
