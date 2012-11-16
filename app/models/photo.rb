@@ -9,17 +9,15 @@ class Photo < ActiveRecord::Base
     id.to_s
   end
 
-
-
-  protected
   def file_path
   	"#{Rails.root.to_s}/public#{self.picture_file}"
   end
 
+  protected
+  
   def upload_to_facebook
   	unless  gallery_id.nil
-  		path = file_path
-  		current_user.upload_photo(path)
+  		current_user.upload_photo(self)
   	end
   end
 end

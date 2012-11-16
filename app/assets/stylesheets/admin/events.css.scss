@@ -1,0 +1,16 @@
+.hidden-place{
+	display:none;
+}
+.text_area{
+	width:300px;
+	resize:none;
+}
+#new_event.form-horizontal{
+	.control-label{
+		text-align:left;
+		width:100px
+	}
+	.controls{
+		margin-left: 120px;
+	}	
+}

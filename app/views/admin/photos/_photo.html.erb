@@ -1,0 +1,8 @@
+<div class = "photo-display">
+	<p><%= image_tag photo.picture_file.thumb %></p>
+	<div class ="actions">
+	  <%= link_to photo_path(:id=>photo.id,:gallery_id=>@gallery.id), :confirm => 'Are you sure?', :method => :delete,:class=>"btn btn-danger" do %>
+	  	<i class=" icon-remove-sign"></i> Eliminar
+	  <%end%>
+	</div>
+</div>

@@ -75,13 +75,14 @@ class User < ActiveRecord::Base
 		graph.put_object(gallery.fb_oid,changes)
 	end
 
-	def upload_photo(photo)
-		graph.put_picture(photo)
+	def upload_photo(photo) 
+		path = file_path
+		graph.put_picture(photo.file_path, {:message => photo.description}, photo.gallery.fb_oid)
 	end
 
 	def upload_photos(photos)
 		photos.each do |photo|
-			graph.put_picture(photo)
+			graph.put_picture(photo.file_path, {:message => photo.description}, photo.gallery.fb_oid) 
 		end
 	end
 

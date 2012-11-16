@@ -1,0 +1,2 @@
+module MobileApp::GalleriesHelper
+end
