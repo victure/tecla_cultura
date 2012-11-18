@@ -1,4 +1,4 @@
-class PlaceTypesController < ApplicationController
+class Admin::PlaceTypesController < ApplicationController
   # GET /place_types
   # GET /place_types.json
   def index
@@ -44,7 +44,7 @@ class PlaceTypesController < ApplicationController
 
     respond_to do |format|
       if @place_type.save
-        format.html { redirect_to @place_type, notice: 'Place type was successfully created.' }
+        format.html { redirect_to admin_place_types, notice: 'Place type was successfully created.' }
         format.json { render json: @place_type, status: :created, location: @place_type }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class PlaceTypesController < ApplicationController
 
     respond_to do |format|
       if @place_type.update_attributes(params[:place_type])
-        format.html { redirect_to @place_type, notice: 'Place type was successfully updated.' }
+        format.html { redirect_to admin_place_types_path, notice: 'Place type was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class PlaceTypesController < ApplicationController
     @place_type.destroy
 
     respond_to do |format|
-      format.html { redirect_to place_types_url }
+      format.html { redirect_to admin_place_types_path }
       format.json { head :no_content }
     end
   end

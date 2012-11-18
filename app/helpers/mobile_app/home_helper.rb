@@ -1,0 +1,2 @@
+module MobileApp::HomeHelper
+end

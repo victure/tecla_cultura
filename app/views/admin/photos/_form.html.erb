@@ -1,4 +1,5 @@
-<%= form_for @photo, :html => { :class => 'form-horizontal' } do |f| %>
+<%- action = new_or_edit ? admin_info_pages_path : admin_info_page_path(:id=>@info_page.id) %>
+<%= form_for @photo, :url=>action,:html => { :class => 'form-horizontal' } do |f| %>
   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
@@ -21,6 +22,6 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                photos_path, :class => 'btn' %>
+                admin_photos_path, :class => 'btn' %>
   </div>
 <% end %>

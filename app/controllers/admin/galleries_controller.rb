@@ -1,4 +1,4 @@
-class GalleriesController < ApplicationController
+class Admin::GalleriesController < ApplicationController
   # GET /galleries
   # GET /galleries.json
   def index
@@ -46,7 +46,7 @@ class GalleriesController < ApplicationController
     respond_to do |format|
       if @gallery.save
         @current_user.create_album(@gallery)
-        format.html { redirect_to new_photo_path(:multiple=>true,:gallery_id=>@gallery.id), notice: 'Gallery was successfully created.' }
+        format.html { redirect_to new_admin_photo_path(:multiple=>true,:gallery_id=>@gallery.id), notice: 'Gallery was successfully created.' }
         format.json { render json: @gallery, status: :created, location: @gallery }
       else
         format.html { render action: "new" }
@@ -62,7 +62,7 @@ class GalleriesController < ApplicationController
 
     respond_to do |format|
       if @gallery.update_attributes(params[:gallery])
-        format.html { redirect_to @gallery, notice: 'Gallery was successfully updated.' }
+        format.html { redirect_to admin_galleries_path, notice: 'Gallery was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -78,7 +78,7 @@ class GalleriesController < ApplicationController
     @gallery.destroy
 
     respond_to do |format|
-      format.html { redirect_to galleries_url }
+      format.html { redirect_to admin_galleries_path }
       format.json { head :no_content }
     end
   end

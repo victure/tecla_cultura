@@ -21,7 +21,7 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= link_to event.id, event_path(event) %></td>
+        <td><%= link_to event.id, admin_event_path(event) %></td>
         <td><%= event.name %></td>
         <td><%= event.date_at %></td>
         <td><%= event.cover %></td>
@@ -33,9 +33,9 @@
         <td><%=l event.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_event_path(event), :class => 'btn btn-mini' %>
+                      edit_admin_event_path(event), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      event_path(event),
+                      admin_event_path(event),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
@@ -46,5 +46,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_event_path,
+            new_admin_event_path,
             :class => 'btn btn-primary' %>

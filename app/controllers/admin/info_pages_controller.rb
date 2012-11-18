@@ -1,4 +1,4 @@
-class InfoPagesController < ApplicationController
+class Admin::InfoPagesController < ApplicationController
   # GET /info_pages
   # GET /info_pages.json
   def index
@@ -44,7 +44,7 @@ class InfoPagesController < ApplicationController
 
     respond_to do |format|
       if @info_page.save
-        format.html { redirect_to @info_page, notice: 'Info page was successfully created.' }
+        format.html { redirect_to admin_info_pages_path, notice: 'Info page was successfully created.' }
         format.json { render json: @info_page, status: :created, location: @info_page }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class InfoPagesController < ApplicationController
 
     respond_to do |format|
       if @info_page.update_attributes(params[:info_page])
-        format.html { redirect_to @info_page, notice: 'Info page was successfully updated.' }
+        format.html { redirect_to admin_info_pages_path, notice: 'Info page was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class InfoPagesController < ApplicationController
     @info_page.destroy
 
     respond_to do |format|
-      format.html { redirect_to info_pages_url }
+      format.html { redirect_to admin_info_pages_path }
       format.json { head :no_content }
     end
   end

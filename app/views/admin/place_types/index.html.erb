@@ -15,15 +15,15 @@
   <tbody>
     <% @place_types.each do |place_type| %>
       <tr>
-        <td><%= link_to place_type.id, place_type_path(place_type) %></td>
+        <td><%= link_to place_type.id, admin_place_type_path(place_type) %></td>
         <td><%= place_type.name %></td>
         <td><%= place_type.label_name %></td>
         <td><%=l place_type.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_place_type_path(place_type), :class => 'btn btn-mini' %>
+                      edit_admin_place_type_path(place_type), :class => 'btn btn-mini' %>
           <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      place_type_path(place_type),
+                      admin_place_type_path(place_type),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-mini btn-danger' %>
@@ -34,5 +34,5 @@
 </table>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
-            new_place_type_path,
+            new_admin_place_type_path,
             :class => 'btn btn-primary' %>

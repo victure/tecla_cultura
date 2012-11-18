@@ -1,4 +1,4 @@
-class EventsController < ApplicationController
+class Admin::EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
@@ -44,8 +44,8 @@ class EventsController < ApplicationController
     @event.start_at = DateTime.parse("#{params[:event][:date_at]} #{params[:event][:start_at]} -0600")
     respond_to do |format|
       if @event.save
-        @current_user.create_fb_event(@event) if @curren_user.is_admin
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        @current_user.create_fb_event(@event) if @current_user.is_admin
+        format.html { redirect_to admin_events_path, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
         format.html { render action: "new" }
@@ -68,7 +68,7 @@ class EventsController < ApplicationController
       if @event.save
         change_to_fb = @current_user.update_fb_event(@event,changes)
         print "\nSe cambio el de facebook=>#{change_to_fb}\n"
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to admin_events_path, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -84,7 +84,7 @@ class EventsController < ApplicationController
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to events_url }
+      format.html { redirect_to admin_events_path }
       format.json { head :no_content }
     end
   end

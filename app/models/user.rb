@@ -24,7 +24,9 @@ class User < ActiveRecord::Base
 	end
 
 	def create_fb_event(event)
-		if !event.fb_oid.nil?
+		print "\nfb_oid.nil=>#{event.fb_oid.nil?}\n"
+		if event.fb_oid.nil?
+			print "\n=======>Crando Envento en Facebook....<=======\n"
 			path = "#{Rails.root.to_s}/public#{event.flayer.url}"
 			picture = Koala::UploadableIO.new(File.open(path))
 			params = {
@@ -35,6 +37,7 @@ class User < ActiveRecord::Base
 			    :location => event.location 
 			}
 			fb_oid = graph.put_object('me', 'events', params )
+			print "\nfb_oid=>#{fb_oid}\n"
 			event.fb_oid = fb_oid["id"]
 			event.save
 			invite_friends(event)
