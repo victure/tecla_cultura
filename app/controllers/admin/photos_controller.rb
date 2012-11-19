@@ -19,7 +19,7 @@ class Admin::PhotosController < ApplicationController
 
     respond_to do |format|
       if @multiple
-        format.html { render :partial=> "/galleries/upload_photos_step", :layout=>!@multiple}
+        format.html { render :partial=> "admin/galleries/upload_photos_step", :layout=>!@multiple}
       else
         format.html #normal
       end

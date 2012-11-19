@@ -47,7 +47,7 @@ $(document).ready(function(){
 		$("#uploading_photos_container").hide()
 	});
 	$("#gallery_form").live("ajax:success", function(evt, data, status, xhr){
-		$("#uploading_photos_container").load("/photos/new?multiple=true&gallery_id="+data.id)	
+		$("#uploading_photos_container").append(data)
 		$(this).hide()
 		$("#uploading_photos_container").show();
 	});

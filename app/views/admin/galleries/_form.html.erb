@@ -1,5 +1,6 @@
 <%- action = new_or_edit ? admin_galleries_path : admin_gallery_path(:id=>@gallery.id) %>
-<%= form_for @gallery, :url=> action,:html => { :class => 'form-horizontal', :id=>"gallery_form" }, :format=>send_format.to_sym,:remote=>remote do |f| %>
+<%- format = new_or_edit ? :json : :html%>
+<%= form_for @gallery, :url=> action,:html => { :class => 'form-horizontal', :id=>"gallery_form" }, :format=>format,:remote=>remote do |f| %>
   <div class="control-group">
     <%= f.label :name, :class => 'control-label' %>
     <div class="controls">

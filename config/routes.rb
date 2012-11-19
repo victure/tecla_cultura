@@ -13,12 +13,13 @@ TeclaCultura::Application.routes.draw do
      
 	match 'auth/:provider/callback', to: 'sessions#create'
 	match 'auth/failure', to: redirect('/')
-	
+	scope "admin" do
+		get "sign_in" => "sessions#new"
+	  	match 'sign_out', to: 'sessions#destroy', as: 'sign_out'
+	end
 	                             
 	root :to =>"mobile_app/home#index"
 	namespace :admin do   
-	  get "sign_in" => "sessions#new"
-	  match 'sign_out', to: 'sessions#destroy', as: 'sign_out'
 	  root :to =>"events#index"
 	  resources :photos, :only => [:new,:create,:show,:destroy]
 	  post "photos/multiple/:id" =>  "photos#multiple_create", as: "multiple_photos"   

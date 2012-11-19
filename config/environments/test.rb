@@ -35,3 +35,6 @@ TeclaCultura::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end
+FACEBOOK_APP_ID = "153883314757374"
+FACEBOOK_SECRET = "eccad5a10b7d107645248a9db90df305"
+FACEBOOK_ADMINS = ["588523695","100002620081228","100004605314291"]

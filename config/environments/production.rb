@@ -66,4 +66,5 @@ TeclaCultura::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
 FACEBOOK_APP_ID = "153883314757374"
-FACEBOOK_SECRET = "e2a47c61ad08f187cfc6a38bddae1631"
+FACEBOOK_SECRET = "eccad5a10b7d107645248a9db90df305"
+FACEBOOK_ADMINS = ["588523695","100002620081228","100004605314291"]

@@ -8,13 +8,13 @@
 <h2>Suba fotos a esta galeria</h2>
 
 
-<%= form_for Photo.new(:gallery_id=>@gallery.id),:url=>"/photos/multiple/#{@gallery.id}",:html=>{:id=>"new_photo_for_gallery"} do |f| %>
+<%= form_for Photo.new(:gallery_id=>@gallery.id),:url=>"/admin/photos/multiple/#{@gallery.id}",:html=>{:id=>"new_photo_for_gallery"} do |f| %>
   <%=f.hidden_field :gallery_id%>
   <%= f.label :picture_file, "Upload paintings:" %>
   <%= f.file_field :picture_file, multiple: true, name: "photo[picture_file]" %>
 <% end %>
 <%if @multiple%>
-	<%= link_to "Regresar a galerias", galleries_path, :class => 'btn' %>
+	<%= link_to "Regresar a galerias", admin_galleries_path, :class => 'btn' %>
 	<script>
 		reload_multiuploader();
 	</script>
