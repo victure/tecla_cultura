@@ -1,4 +1,4 @@
-class MobileApp::EventsController < ApplicationController
+class MobileApp::EventsController < MobileApp::MobileController
 	before_filter :load_date
   def index
   	@events = Event.where(:date_at => (@date.beginning_of_month-1)..(@date.end_of_month+1))

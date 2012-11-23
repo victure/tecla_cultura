@@ -1,4 +1,5 @@
 class Event < ActiveRecord::Base
+  cattr_accessor :current_user
   attr_accessible :cover, :date_at, :description, :flayer, :name, :place_id, :state,:start_at, :address
   has_many :galleries
   belongs_to :place

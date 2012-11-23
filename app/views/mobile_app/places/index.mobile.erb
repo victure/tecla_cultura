@@ -1,0 +1,13 @@
+<div data-role= "content">
+	<ul data-role="listview" data-inset="true" data-theme="d">
+		<%@places.each do |place|%>
+			<li>
+				<%=link_to mobile_app_place_path(:id=>place.id) do%>
+					<%=image_tag "/images/album-bb.jpg" %>
+				  	<h3><%=place.name%></h3>
+				    <p><%=place.description%></p>
+				<%end%>
+			</li>
+		<%end%>
+	<ul>
+</div>

@@ -44,7 +44,7 @@ class Admin::PlaceTypesController < ApplicationController
 
     respond_to do |format|
       if @place_type.save
-        format.html { redirect_to admin_place_types, notice: 'Place type was successfully created.' }
+        format.html { redirect_to admin_place_types_path, notice: 'Place type was successfully created.' }
         format.json { render json: @place_type, status: :created, location: @place_type }
       else
         format.html { render action: "new" }

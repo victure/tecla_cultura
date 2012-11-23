@@ -1,4 +1,4 @@
-class MobileApp::InfoPagesController < ApplicationController
+class MobileApp::InfoPagesController < MobileApp::MobileController
   def show
   end
 end

@@ -1,4 +1,4 @@
-class MobileApp::GalleriesController < ApplicationController
+class MobileApp::GalleriesController < MobileApp::MobileController
   def index
   end
 

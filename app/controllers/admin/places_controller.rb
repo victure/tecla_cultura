@@ -41,10 +41,10 @@ class Admin::PlacesController < ApplicationController
   # POST /places.json
   def create
     @place = Place.new(params[:place])
-
+    @place.state = true
     respond_to do |format|
       if @place.save
-        format.html { redirect_to admin_place_path, notice: 'Place was successfully created.' }
+        format.html { redirect_to admin_places_path, notice: 'Place was successfully created.' }
         format.json { render json: @place, status: :created, location: @place }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admin::PlacesController < ApplicationController
 
     respond_to do |format|
       if @place.update_attributes(params[:place])
-        format.html { redirect_to admin_place_path, notice: 'Place was successfully updated.' }
+        format.html { redirect_to admin_places_path, notice: 'Place was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,7 @@ class Admin::PlacesController < ApplicationController
     @place.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_place_path }
+      format.html { redirect_to admin_places_path }
       format.json { head :no_content }
     end
   end

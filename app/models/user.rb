@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  cattr_accessor :current_user
 	attr_accessible :fb_url, :image, :name, :oauth_expires_at, :oauth_token, :provider, :uid, :is_admin
 
 	def self.from_omniauth(auth)
@@ -58,8 +59,16 @@ class User < ActiveRecord::Base
 
 	def invite_friends(event)
 		@friends ||=friends
-		invite_to = @friends.map{|friend| friend["id"]}.join(",")
-		graph.put_connections(event.fb_oid,"invited",:users=> invite_to )
+		@friends.map{|friend| friend["id"]}.each do |invite_to|
+			begin
+				result = graph.put_connections(event.fb_oid,"invited",:user_id=> invite_to )
+				print "\ninviting=>#{invite_to}=>#{result}\n"
+			rescue Koala::Facebook::APIError
+				print "\nfail=>#{invite_to}\n"
+				logger.info e.to_s
+				next
+			end
+		end
 	end
 
 	def create_album(gallery)
@@ -79,7 +88,7 @@ class User < ActiveRecord::Base
 	end
 
 	def upload_photo(photo) 
-		path = file_path
+		path = photo.file_path
 		graph.put_picture(photo.file_path, {:message => photo.description}, photo.gallery.fb_oid)
 	end
 
