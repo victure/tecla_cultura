@@ -5,7 +5,8 @@ class MobileApp::PlacesController < MobileApp::MobileController
   	@places = !@type.nil? ? Place.actives.where(:place_type_id=>@type.id) : Place.all
   end
 
-  def show
+  def show      
+		@place = Place.find_by_id(params[:id])
   end
 
   def load_type

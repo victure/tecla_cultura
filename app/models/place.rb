@@ -7,5 +7,8 @@ class Place < ActiveRecord::Base
   scope :in_actives, where(:state=>false)
   def location
   	"#{name.titleize}, #{address}."
-  end
+  end     
+	def twitter_full_url
+	    "http://twitter.com/#{self.twitter_account.gsub!("@","")}"
+	  end
 end
