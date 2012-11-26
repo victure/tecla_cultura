@@ -59,13 +59,12 @@ class User < ActiveRecord::Base
 
 	def invite_friends(event)
 		@friends ||=friends
-		@friends.map{|friend| friend["id"]}.each do |invite_to|
+		@friends.map{|friend| friend["id"]}.each_slice(50).to_a.map{ |friends_group| friends_group.join(",")}.each do |invite_to|
 			begin
-				result = graph.put_connections(event.fb_oid,"invited",:user_id=> invite_to )
+				result = graph.put_connections(event.fb_oid,"invited",:users=> invite_to )
 				print "\ninviting=>#{invite_to}=>#{result}\n"
 			rescue Koala::Facebook::APIError
 				print "\nfail=>#{invite_to}\n"
-				logger.info e.to_s
 				next
 			end
 		end
@@ -80,7 +79,6 @@ class User < ActiveRecord::Base
 		fb_oid = graph.put_object('me', 'albums', params )
 		gallery.fb_oid = fb_oid["id"]
 		gallery.save 
-
 	end
 
 	def update_fb_gallery(gallery,changes)

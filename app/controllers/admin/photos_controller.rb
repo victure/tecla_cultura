@@ -33,6 +33,7 @@ class Admin::PhotosController < ApplicationController
     @photo = Photo.new(params[:photo])
     respond_to do |format|
       if @photo.save
+        @current_user.upload_photo(@photo)
         format.html { redirect_to edit_admin_gallery_path(:id=>@gallery.id), notice: 'Photo was successfully created.' }
         format.json { render json: @photo, status: :created, location: @photo }
       else
