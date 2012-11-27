@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(:version => 20121109055023) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "address"
-    t.datetime "start_at"
+    t.date     "start_at"
     t.string   "fb_oid"
   end
 
