@@ -5,7 +5,7 @@ class MobileApp::EventsController < MobileApp::MobileController
   	respond_to do |format|
   		format.html
   		format.mobile
-  		format.json { json: { events: @events, date_for_calendar: @date_for_calendar}}
+  		#format.json { json: { events: @events, date_for_calendar: @date_for_calendar}}
   	end
   end
 
@@ -14,7 +14,7 @@ class MobileApp::EventsController < MobileApp::MobileController
   	respond_to do |format|
   		format.html
   		format.mobile
-  		format.json { json: {event: @event} }
+  		#format.json { json: {event: @event} }
   	end
   end
 
@@ -23,7 +23,7 @@ class MobileApp::EventsController < MobileApp::MobileController
   	respond_to do |format|
   		format.html
   		format.mobile
-  		format.json { json: { events: @events,date_for_calendar: @date_for_calendar, date_at: @date_at}}
+  		#format.json { json: { events: @events,date_for_calendar: @date_for_calendar, date_at: @date_at}}
   	end 
   end
 
