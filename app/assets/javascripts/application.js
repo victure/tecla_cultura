@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require twitter/bootstrap
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require_tree .
+
 
 function reload_multiuploader(){
 	$('#new_photo_for_gallery').fileupload({
