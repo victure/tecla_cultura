@@ -12,7 +12,7 @@ gem "rmagick"
 gem 'carrierwave'
 gem 'omniauth-facebook'
 gem 'koala'
-gem "twitter-bootstrap-rails"
+#gem "twitter-bootstrap-rails"
 gem 'pg'
 
 # Gems used only for assets and not required
