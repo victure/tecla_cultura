@@ -123,7 +123,7 @@
         <%end%>
         <%- yield_span = current_user_signed_in? ? "span9" : "span12"%>
         <div class="<%=yield_span%>">
-          <%= bootstrap_flash %>
+          <%= bootstrap_flash  %>
           <%= yield %>
         </div>
       </div><!--/row-->
