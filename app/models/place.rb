@@ -7,8 +7,18 @@ class Place < ActiveRecord::Base
   scope :in_actives, where(:state=>false)
   def location
   	"#{name.titleize}, #{address}."
-  end     
+  end
+       
 	def twitter_full_url
 	    "http://twitter.com/#{self.twitter_account.gsub!("@","")}"
-	  end
+	end
+
+  def lat
+    map_latlng.delete("(",")").strip.split(",")[0] unless map_latlng.nil?
+  end
+
+  def lng
+    map_latlng.delete("(",")").strip.split(",")[1] unless map_latlng.nil?
+  end
+
 end
