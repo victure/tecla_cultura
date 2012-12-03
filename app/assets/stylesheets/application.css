@@ -5,7 +5,8 @@
 #fb_login{
 	margin-top:15%;
 }
-.short-text-area{
-	width:300px;
+.text_area{
+	width:361px;
 	resize:none;
+	height:200px
 }

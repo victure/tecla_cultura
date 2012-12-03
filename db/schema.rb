@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129043118) do
+ActiveRecord::Schema.define(:version => 20121201224928) do
 
   create_table "events", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(:version => 20121129043118) do
     t.text     "address"
     t.datetime "start_at"
     t.string   "fb_oid"
+    t.string   "map_latlng"
+    t.string   "map_zoom"
   end
 
   create_table "galleries", :force => true do |t|
@@ -68,11 +70,11 @@ ActiveRecord::Schema.define(:version => 20121129043118) do
     t.boolean  "state"
     t.text     "description"
     t.integer  "place_type_id"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.string   "map_latlng"
     t.string   "map_zoom"
-    t.string   "alternative_address"
+    t.string   "fanpage"
   end
 
   create_table "users", :force => true do |t|

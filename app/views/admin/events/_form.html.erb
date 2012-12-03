@@ -1,3 +1,59 @@
+<style type="text/css">
+  #map {
+    margin: 0;
+    padding: 0;
+    border:solid 4px #CCC;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;width:370px;height:250px;margin-bottom:20px
+  }
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<%= javascript_include_tag "/js-libraries/gmaps.js"%>
+<script>
+  var map;
+  var marker;
+  function initialize(){
+    map = new GMaps({
+            div: '#map',
+            zoom: <%=@event.map_zoom || 15%>,
+            lat: <%=@event.lat || "13.67527"%>,
+            lng: <%=@event.lng || "-89.28572"%>,
+            zoom_changed: function(e){
+              $('#place_map_zoom').val(this.getZoom());
+            },
+            center_changed: function(e){
+              $('#place_map_latlng').val(this.getCenter());
+            },
+            dragend: function(e){
+              if(marker !=null){
+                marker.setPosition(map.getCenter())
+                $('#place_map_latlng').val(this.getCenter());
+              }
+            }
+          });
+    $("#map-place").css("display","none")
+  }
+  function codeAddress(){
+    GMaps.geocode({
+      address: $('#map_search').val(),
+      callback: function(results, status) {
+        if (status == 'OK') {
+            map.removeMarkers();
+            var latlng = results[0].geometry.location;
+            map.setCenter(latlng.lat(), latlng.lng());
+            marker =  map.addMarker({
+                        lat: latlng.lat(),
+                        lng: latlng.lng()
+                      });
+        }
+      }
+    });
+    false;
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
 <%- action = new_or_edit ? admin_events_path : admin_event_path(:id=>@event.id) %>
 <%= form_for @event,:url=>action, :html => { :class => 'form-horizontal', :multipart => true } do |f| %>
   <div class="control-group">
@@ -36,7 +92,7 @@
     </div>
   </div>
 
-  <div id= "place-id" class="control-group">
+  <div id= "place-id" class="control-group show-place">
     <%= f.label :place_id, :class => 'control-label' %>
     <div class="controls">
       <%= f.collection_select :place_id, Place.all, :id, :name, :prompt =>"Seleccione un establecimiento", :class=>"select_field"%> 
@@ -50,6 +106,19 @@
       <%= f.text_area :address, :class => 'text_area',:rows=>5 %></br>
       <%= link_to " O especifique un establecimiento", "", :class=> "toggle-place", :data=>{:display=>"place-id", :hide=>"place-at"} %>
     </div>
+  </div>
+
+  <div id = "map-place" class="control-group" data-visible="-1" >
+    <label class="control-label">Buscar en el mapa</label>
+    <div class="controls">
+      <input id="map_search"></input>
+      <%=link_to "Marcar en el mapa","#map",:class=>"btn btn-primary", :onclick=>"codeAddress();"%>
+    </div>
+      <div style="float:left;margin-left:0px;margin-top:15px;">
+        <div id="map"></div>
+        <div><%=f.hidden_field :map_zoom%> <%=f.hidden_field :map_latlng%></div>
+        <div class="well" style="width:335px">Arrastre el marcador para ajustar su posición. Ajuste el nivel de zoom que desee con el que el mapa inicie a cuando se muestra a los usuarios.</div>
+      </div>
   </div>
 
   <div class="control-group">

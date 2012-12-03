@@ -1,6 +1,6 @@
 class Event < ActiveRecord::Base
   cattr_accessor :current_user
-  attr_accessible :cover, :date_at, :description, :flayer, :name, :place_id, :state,:start_at, :address
+  attr_accessible :cover, :date_at, :description, :flayer, :name, :place_id, :state,:start_at, :address,:map_zoom, :map_latlng
   has_many :galleries
   belongs_to :place
   mount_uploader :flayer, EventCoverUploader
@@ -26,5 +26,13 @@ class Event < ActiveRecord::Base
       end
     end
     return changes_fb
+  end
+
+  def lat
+    map_latlng.delete("(",")").strip.split(",")[0] unless map_latlng.nil?
+  end
+
+  def lng
+    map_latlng.delete("(",")").strip.split(",")[1] unless map_latlng.nil?
   end
 end

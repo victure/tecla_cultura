@@ -8,13 +8,13 @@
     border-radius: 5px;width:370px;height:250px;margin-bottom:20px
   }
 </style>
+
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <%= javascript_include_tag "/js-libraries/gmaps.js"%>
 <script>
   var map;
   var marker;
   function initialize(){
-    console.log("inicializando mapa....")
     map = new GMaps({
             div: '#map',
             zoom: <%=@place.map_zoom || 15%>,
@@ -22,9 +22,6 @@
             lng: <%=@place.lng || "-89.28572"%>,
             zoom_changed: function(e){
               $('#place_map_zoom').val(this.getZoom());
-              latlng=map.getCenter().$a+","+map.getCenter().ab
-              console.log(latlng),
-              $('#place_map_latlng').val(latlng);
             },
             center_changed: function(e){
               $('#place_map_latlng').val(this.getCenter());
@@ -40,9 +37,10 @@
   }
   function codeAddress(){
     GMaps.geocode({
-      address: $('#address').val(),
+      address: $('#map_search').val(),
       callback: function(results, status) {
         if (status == 'OK') {
+            map.removeMarkers();
             var latlng = results[0].geometry.location;
             map.setCenter(latlng.lat(), latlng.lng());
             marker =  map.addMarker({
@@ -83,13 +81,20 @@
   <div class="control-group">
     <%= f.label :address, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :address, :class => 'text_field', :id=>"address" %>
-      <%=link_to "Pin on Map","#map",:class=>"btn btn-primary", :onclick=>"codeAddress();"%>
+      <%= f.text_field :address %>
     </div>
-      <div style="float:left;margin-left:108px;margin-top:15px;">
+  </div>
+
+  <div class="control-group">
+    <label class="control-label">Buscar en el mapa</label>
+    <div class="controls">
+      <input id="map_search"></input>
+      <%=link_to "Marcar en el mapa","#map",:class=>"btn btn-primary", :onclick=>"codeAddress();"%>
+    </div>
+      <div style="float:left;margin-left:0px;margin-top:15px;">
         <div id="map"></div>
         <div><%=f.hidden_field :map_zoom%> <%=f.hidden_field :map_latlng%></div>
-        <div class="well" style="width:335px">Drag the pin to adjust its position. Set the zoom level you want the map to start at when displayed to the users.</div>
+        <div class="well" style="width:335px">Arrastre el marcador para ajustar su posición. Ajuste el nivel de zoom que desee con el que el mapa inicie a cuando se muestra a los usuarios.</div>
       </div>
   </div>
 
@@ -101,9 +106,16 @@
   </div>
 
   <div class="control-group">
+    <%= f.label :fanpage, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fanpage, :class => 'text_field',:placeholder => "Usernane de la fanpage" %>
+    </div>
+  </div>
+
+  <div class="control-group">
     <%= f.label :twitter_account, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :twitter_account, :class => 'text_field' %>
+      <%= f.text_field :twitter_account, :class => 'text_field', :placeholder => "Usernane sin @" %>
     </div>
   </div>
   <%unless new_or_edit%>
