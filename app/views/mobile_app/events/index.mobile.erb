@@ -1,0 +1,102 @@
+<div id="calendar-content" data-role="content">   
+	<div id = "calendar">
+		<div class = "calendar-header" data-role="header">
+			<%= link_to "", mobile_app_events_path(calendar: true), :class=> "calendar-link", :id=>"prev-month", :data=>{:role=>"button",:icon=>"arrow-l",:iconpos=>"notext", :inline=>true,:month => @date_for_calendar.prev_month} %>
+			<h2 id="month">
+			    <%= @date_for_calendar.strftime("%B %Y") %>
+			</h2>
+			<%= link_to "", mobile_app_events_path(calendar: true), :class=> "calendar-link", :id=>"next-month",:data=>{:role=>"button",:icon=>"arrow-r",:iconpos=>"notext", :inline=>true, :month=> @date_for_calendar.next_month}   %>
+		</div>
+		<%=calendar do |date|%>
+			<div class ="schedule">
+				<%for i in 0..23 do%>
+					<%case i%>
+						<%when 0%>
+							<div id="hour-range-<%=i%>" class= "hour-range hour-range-start <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i.to_s.to_sym].nil?%>">
+							</div>
+						<%when 23%>
+							<div id="hour-range-<%=i%>" class= "hour-range hour-range-end <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i.to_s.to_sym].nil?%>">
+							</div>
+						<%else%>
+						<div id="hour-range-<%=i%>" class= "hour-range <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i.to_s.to_sym].nil?%>">
+						</div>
+					<%end%>
+				<%end%>
+			</div>
+			<div class = "day">
+				<%=date.day%>
+			</div>
+		<%end%>
+	</div>
+</div>
+
+<div class="upcomming-header" data-role="header" style="margin-top:10px;">
+	<h2>Proximos eventos</h2>
+</div>
+<div id = "events-content" data-role = "content" style="padding: 0px 15px;">
+	<ul data-role="listview" data-theme="d" data-divider-theme="d" data-inset="true">
+		<%@up_comming.each do |key,day_events|%>
+			<li data-role="list-divider" data-role="collapsible"><%=day_events[0].start_at.strftime("%A %e de %B")%> <span class="ui-li-count"><%=day_events.count%></span></li>
+			<%day_events.each do |event|%>
+				<li>
+					<%=link_to mobile_app_event_path(:id=>event.id) do%>
+						<h3><%=event.name%></h3>
+						<p><%=event.description%></p>
+						<p class="ui-li-aside"><strong><%=event.start_at.strftime("%l:%m %p")%></strong></p>
+					<%end%>
+				</li>
+			<%end%>
+		<%end%>
+	</ul>
+</div>
+<script>
+function bind_handlers(){
+	$("#prev-month").live("click",function(){
+		month= $(this).data("month")
+		route = $(this).attr("href") + "&month=" + month 
+		$.get(route,function(data){
+			try{
+				//$(".week-rows").hide();
+				$(".week-rows").html(data);//.trigger("create");
+				//$(".week-rows").show();
+				prev_month = $("#prev-month-hidden").val();
+				$("#prev-month").data("month", prev_month);
+				next_month = $("#next-month-hidden").val();
+				$("#next-month").data("month", next_month);
+				$("#month").text($("#label-month-hidden").val())
+			}
+			catch(err){
+				console.log(err)
+			}
+		})
+		return false
+	})
+	$("#next-month").live("click",function(){
+		month= $(this).data("month")
+		route = $(this).attr("href") + "&month=" + month  
+		$.get(route,function(data){
+			try{
+				//$(".week-rows").hide();
+				$(".week-rows").html(data);//.trigger("create");
+				//$(".week-rows").show();
+				prev_month = $("#prev-month-hidden").val();
+				$("#prev-month").data("month", prev_month);
+				next_month = $("#next-month-hidden").val();
+				$("#next-month").data("month", next_month);
+				$("#month").text($("#label-month-hidden").val())
+
+			}
+			catch(err){
+				console.log(err)
+			}
+		})
+		return false
+	})
+
+	/*$(".day-link").live("click",function(){
+		alert("funciono")
+		return false
+	})*/
+}
+$(document).on("ready", bind_handlers)
+</script>

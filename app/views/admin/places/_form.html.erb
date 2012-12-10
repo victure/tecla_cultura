@@ -17,7 +17,7 @@
   function initialize(){
     map = new GMaps({
             div: '#map',
-            zoom: <%=@place.map_zoom || 15%>,
+            zoom: <%=@place.zoom || 15%>,
             lat: <%=@place.lat || "13.67527"%>,
             lng: <%=@place.lng || "-89.28572"%>,
             zoom_changed: function(e){
@@ -33,6 +33,13 @@
               }
             }
           });
+    <%if !@place.map_latlng.nil?%>
+       marker = map.addMarker({
+                  lat: <%=@place.lat %>,
+                  lng: <%=@place.lng %>,
+                  title: "<%=@place.name%>"
+                });
+    <%end%>
 
   }
   function codeAddress(){

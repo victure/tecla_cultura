@@ -1,11 +1,34 @@
 class MobileApp::EventsController < MobileApp::MobileController
-	before_filter :load_date
+
   def index
-  	@events = Event.where(:date_at => (@date.beginning_of_month-1)..(@date.end_of_month+1))
+    @selected = "hour-range-selected"
+    @calendar = !params[:calendar].nil?
+    if params[:month]
+      @date_for_calendar = Date.parse(params[:month])
+      @events = Event.grouped_events_by_day(@date_for_calendar)
+      @up_comming = Event.up_coming_events
+          
+    elsif params[:date_at]
+      @date_at = Date.parse(params[:date_at])
+      @events = Event.on_day(@date_at)
+    else
+      @date_for_calendar = Date.today
+      @events = Event.grouped_events_by_day(@date_for_calendar)
+      @up_comming = Event.up_coming_events
+    end 
+  	
   	respond_to do |format|
-  		format.html
-  		format.mobile
-  		#format.json { json: { events: @events, date_for_calendar: @date_for_calendar}}
+      if @date_at
+        format.html{ render "date_index"}
+        format.mobile{ render "date_index"} 
+      elsif @calendar
+  		  format.html{ render :partial=>"calendar",:layout=>false}
+  		  format.mobile{ render :partial=>"calendar",:layout=>false}
+      else
+        format.html
+        format.mobile
+  		end
+      #format.json { json: { events: @events, date_for_calendar: @date_for_calendar}}
   	end
   end
 
@@ -17,19 +40,4 @@ class MobileApp::EventsController < MobileApp::MobileController
   		#format.json { json: {event: @event} }
   	end
   end
-
-  def show_events_for_date
-  	@events = Event.where(:date_at => @date_at)
-  	respond_to do |format|
-  		format.html
-  		format.mobile
-  		#format.json { json: { events: @events,date_for_calendar: @date_for_calendar, date_at: @date_at}}
-  	end 
-  end
-
-  def load_date
-  	@date_for_calendar = params[:month] ? Date.parse(params[:month]) : Date.today
-  	@date_at ||= Date.parse(params[:date_at])
-  end
-  
 end

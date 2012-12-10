@@ -13,26 +13,39 @@
 <script>
   var map;
   var marker;
+  function clearMarkers(){
+    alert("Eliminando marcadores en el mapa")
+    map.removeMarkers()
+  }
   function initialize(){
     map = new GMaps({
             div: '#map',
-            zoom: <%=@event.map_zoom || 15%>,
+            zoom: <%=@event.zoom || 15%>,
             lat: <%=@event.lat || "13.67527"%>,
             lng: <%=@event.lng || "-89.28572"%>,
             zoom_changed: function(e){
-              $('#place_map_zoom').val(this.getZoom());
+              $('#event_map_zoom').val(this.getZoom());
             },
             center_changed: function(e){
-              $('#place_map_latlng').val(this.getCenter());
+              $('#event_map_latlng').val(this.getCenter());
             },
             dragend: function(e){
               if(marker !=null){
                 marker.setPosition(map.getCenter())
-                $('#place_map_latlng').val(this.getCenter());
+                $('#event_map_latlng').val(this.getCenter());
               }
             }
           });
-    $("#map-place").css("display","none")
+    <%if !@event.map_latlng.nil?%>
+      marker =  map.addMarker({
+                  lat: <%=@event.lat || "13.67527"%>,
+                  lng: <%=@event.lng || "-89.28572"%>,
+                  title: "<%=@event.name%>"
+                });
+    <%else%>
+      $("#map-place").css("display","none")
+    <%end%>
+    
   }
   function codeAddress(){
     GMaps.geocode({
@@ -92,23 +105,23 @@
     </div>
   </div>
 
-  <div id= "place-id" class="control-group show-place">
+  <div id= "place-id" class="control-group <%=@show_place%>">
     <%= f.label :place_id, :class => 'control-label' %>
     <div class="controls">
-      <%= f.collection_select :place_id, Place.all, :id, :name, :prompt =>"Seleccione un establecimiento", :class=>"select_field"%> 
+      <%= f.collection_select :place_id, Place.all, :id, :name, :prompt =>"Seleccione un establecimiento", :class=>"select_field"%>
       <%= link_to " O especifique una dirección", "", :class=> "toggle-place", :data=>{:display=>"place-at", :hide=>"place-id"} %>
     </div>
   </div>
 
-  <div id= "place-at" class="control-group hidden-place">
+  <div id= "place-at" class="control-group <%=@show_address%>">
     <%= f.label :address, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :address, :class => 'text_area',:rows=>5 %></br>
+      <%= f.text_field :address, :class=>"text_field" %>
       <%= link_to " O especifique un establecimiento", "", :class=> "toggle-place", :data=>{:display=>"place-id", :hide=>"place-at"} %>
     </div>
   </div>
 
-  <div id = "map-place" class="control-group" data-visible="-1" >
+  <div id = "map-place" class="control-group" data-visible="<%=@toogle_map%>" >
     <label class="control-label">Buscar en el mapa</label>
     <div class="controls">
       <input id="map_search"></input>

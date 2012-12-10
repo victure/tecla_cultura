@@ -1,0 +1,29 @@
+<div data-role="header">
+  <%=image_tag "/images/album-bb.jpg", :class=>"header-img-left"%>
+  <p style="text-align:center;padding:2px;font-size:15pt"><%=@place.name%></p>
+</div><!-- /header -->  
+
+<div data-role="content">        
+  <div>
+    <p><strong><%=@place.address%></strong><br/></p>
+  </div>          
+  
+  <div>
+    <p><strong>Acerca de <%=@place.name%></strong><br/><%=@place.description%></p> 
+  </div>    
+  
+  <div>
+    <ul data-role="listview">
+  		<%unless @place.phone.blank?%>
+  		  <li data-theme="d"><a href="tel:<%=@place.phone%>" data-ajax="false"><%=@place.phone%></a></li>
+  		<%end%>
+  		<%unless @place.web_page.blank?%>
+  		  <li data-theme="d"><a href="<%=@place.web_page%>" data-ajax="false" target="_blank"><%=@place.web_page%></a></li>
+  		<%end%>
+  		<%unless @place.twitter_account.blank?%>
+  		  <li data-theme="d"><a href="<%=@place.twitter_full_url%>" data-ajax="false" target="_blank"><%="@#{@place.twitter_account}"%></a></li>
+  		<%end%>
+  	</ul></br>
+  </div>
+  <img src="http://maps.google.com/maps/api/staticmap?zoom=<%=@place.zoom%>&amp;size=250x200&amp;maptype=roadmap&amp;markers=color:red|label:|<%=@place.map_latlng%>&amp;sensor=false" class="map">
+</div>

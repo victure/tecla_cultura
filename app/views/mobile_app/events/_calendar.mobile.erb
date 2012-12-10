@@ -1,0 +1,23 @@
+<%=calendar_weeks @date_for_calendar do |date|%>
+	<div class ="schedule">
+		<%for i in 0..23 do%>
+			<%case i%>
+				<%when 0%>
+					<div id="hour-range-<%=i%>" class= "hour-range hour-range-start <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i].nil?%>">
+					</div>
+				<%when 23%>
+					<div id="hour-range-<%=i%>" class= "hour-range hour-range-end <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i].nil?%>">
+					</div>
+				<%else%>
+				<div id="hour-range-<%=i%>" class= "hour-range <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i].nil?%>">
+				</div>
+			<%end%>
+		<%end%>
+	</div>
+	<div class = "day">
+		<%=date.day%>
+	</div>
+<%end%>
+<%=hidden_field_tag "prev-moth", @date_for_calendar.prev_month, :id=>"prev-month-hidden"%>
+<%=hidden_field_tag "next-moth", @date_for_calendar.next_month, :id=>"next-month-hidden"%>
+<%=hidden_field_tag "label-month", @date_for_calendar.strftime("%B %Y"), :id=>"label-month-hidden"%>

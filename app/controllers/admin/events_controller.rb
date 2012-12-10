@@ -24,7 +24,9 @@ class Admin::EventsController < ApplicationController
   # GET /events/new.json
   def new
     @event = Event.new
-
+    @show_place = "show-place"
+    @show_address = "hidden-place"
+    @toogle_map = -1
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @event }
@@ -34,6 +36,9 @@ class Admin::EventsController < ApplicationController
   # GET /events/1/edit
   def edit
     @event = Event.find(params[:id])
+    @show_place = @event.place.nil? ? "hidden-place" : "show-place"
+    @show_address =  @event.address.nil? ? "hidden-place" : "show-place"
+    @toogle_map = @event.map_latlng.nil? ? -1 : 1
   end
 
   # POST /events
@@ -66,7 +71,7 @@ class Admin::EventsController < ApplicationController
     print "\nchanges_to_fb antes de guardar=>#{changes}\n"
     respond_to do |format|
       if @event.save
-        change_to_fb = @current_user.update_fb_event(@event,changes)
+        change_to_fb = @current_user.update_fb_event(@event,changes) if !changes.empty?
         print "\nSe cambio el de facebook=>#{change_to_fb}\n"
         format.html { redirect_to admin_events_path, notice: 'Event was successfully updated.' }
         format.json { head :no_content }

@@ -18,11 +18,15 @@ class Place < ActiveRecord::Base
   end
 
   def lat
-    map_latlng.delete("(",")").strip.split(",")[0] unless map_latlng.nil?
+    map_latlng.delete("(").delete(")").strip.split(",")[0] unless map_latlng.nil?
+  end
+
+   def zoom
+    self.map_zoom.blank? ? 15 : self.map_zoom
   end
 
   def lng
-    map_latlng.delete("(",")").strip.split(",")[1] unless map_latlng.nil?
+    map_latlng.delete("(").delete(")").strip.split(",")[1] unless map_latlng.nil?
   end
 
 end
