@@ -28,6 +28,14 @@ class Event < ActiveRecord::Base
     return changes_fb
   end
 
+  def latlng
+    if place.nil?
+      map_latlng unless map_latlng.nil?
+    else
+      place.map_latlng
+    end 
+  end
+
   def lat
     if place.nil?
       map_latlng.delete("(").delete(")").strip.split(",")[0] unless map_latlng.nil?
@@ -62,6 +70,10 @@ class Event < ActiveRecord::Base
       end
     end
     return hash
+  end
+
+  def on_day(date)
+    Event.where(:date_at=>(date.beginning_of_day..date.end_of_day )).order(:start_at)
   end
 
   def self.up_coming_events

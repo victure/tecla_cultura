@@ -31,3 +31,35 @@
     <%= render :partial=> "upload_photos_step"%>
   <%end%>
 </div>
+<script>
+  var reload_multiuploader;
+
+  reload_multiuploader = function() {
+    return $("#new_photo_for_gallery").fileupload({
+      dataType: "script",
+      add: function(e, data) {
+        var file, types;
+        file = void 0;
+        types = void 0;
+        types = /(\.|\/)(gif|jpe?g|png)$/i;
+        file = data.files[0];
+        if (types.test(file.type) || types.test(file.name)) {
+          data.context = $(tmpl("template-upload", file));
+          $("#new_painting").append(data.context);
+          return data.submit();
+        } else {
+          return alert("" + file.name + " is not a gif, jpeg, or png image file");
+        }
+      },
+      progress: function(e, data) {
+        var progress;
+        progress = void 0;
+        if (data.context) {
+          progress = parseInt(data.loaded / data.total * 100, 10);
+          return data.context.find(".bar").css("width", progress + "%");
+        }
+      }
+    });
+  };
+
+</script>

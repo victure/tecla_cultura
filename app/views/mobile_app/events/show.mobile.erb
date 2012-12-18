@@ -1,2 +1,19 @@
-<h1>MobileApp::Events#show</h1>
-<p>Find me in app/views/mobile_app/events/show.html.erb</p>
+<div data-role="content">        
+
+  <center><h2><%=@event.name%></h2></center>
+  <%=image_tag @event.flayer.url, :style=>"width:100%;height:auto;"%>
+
+   <div>
+    <p><strong>Fecha:</strong><br/><%=@event.start_at.strftime("%A %e de %B a las %l:%m %p")%></p>
+  </div>     
+
+  <div>
+    <p><strong>Lugar:</strong><br/><%=@event.location%></p>
+  </div>          
+  
+  <div>
+    <p><strong>Acerca del evento:</strong><br/><%=@event.description%></p> 
+  </div>    
+  
+  <img src="http://maps.google.com/maps/api/staticmap?zoom=<%=@event.zoom%>&amp;size=250x200&amp;maptype=roadmap&amp;markers=color:red|label:|<%=@event.latlng%>&amp;sensor=false" class="map">
+</div>

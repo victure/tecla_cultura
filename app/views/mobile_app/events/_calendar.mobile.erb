@@ -1,15 +1,15 @@
 <%=calendar_weeks @date_for_calendar do |date|%>
 	<div class ="schedule">
 		<%for i in 0..23 do%>
-			<%case i%>
+					<%case i%>
 				<%when 0%>
-					<div id="hour-range-<%=i%>" class= "hour-range hour-range-start <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i].nil?%>">
+					<div id="hour-range-<%=i%>" class= "hour-range hour-range-start <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i.to_s.to_sym].nil?%>">
 					</div>
 				<%when 23%>
-					<div id="hour-range-<%=i%>" class= "hour-range hour-range-end <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i].nil?%>">
+					<div id="hour-range-<%=i%>" class= "hour-range hour-range-end <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i.to_s.to_sym].nil?%>">
 					</div>
 				<%else%>
-				<div id="hour-range-<%=i%>" class= "hour-range <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i].nil?%>">
+				<div id="hour-range-<%=i%>" class= "hour-range <%="hour-range-selected" if !@events[date.day.to_i.to_s.to_sym].nil? and !@events[date.day.to_i.to_s.to_sym][i.to_s.to_sym].nil?%>">
 				</div>
 			<%end%>
 		<%end%>
