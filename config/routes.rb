@@ -5,6 +5,7 @@ TeclaCultura::Application.routes.draw do
 	namespace :mobile_app do   
 		resources :info_pages, :only=>[:show]
 		resources :places, :only=>[:show,:index]
+		get "map" => "places#map", :as=>"places_map_location"
 		resources :place_types, :only=>[:show,:index]
 		resources :galleries, :only=>[:show,:index]
 		resources :events, :only=>[:show,:index]

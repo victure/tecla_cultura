@@ -13,4 +13,14 @@ class MobileApp::PlacesController < MobileApp::MobileController
   	@type = PlaceType.find_by_id(params[:place_type_id])
   	print "\n@type.nil?=>#{@type.nil?}\n"
   end
+
+  def map
+    @places = Place.all
+    respond_to do |format|
+      format.html
+      format.mobile
+      format.json{ render json: @places}
+    end
+  end
+
 end

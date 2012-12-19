@@ -18,7 +18,7 @@ class Place < ActiveRecord::Base
   end
 
   def lat
-    map_latlng.delete("(").delete(")").strip.split(",")[0] unless map_latlng.nil?
+    map_latlng.delete("(").delete(")").strip.split(",")[0].strip unless map_latlng.nil?
   end
 
    def zoom
@@ -26,7 +26,15 @@ class Place < ActiveRecord::Base
   end
 
   def lng
-    map_latlng.delete("(").delete(")").strip.split(",")[1] unless map_latlng.nil?
+    map_latlng.delete("(").delete(")").strip.split(",")[1].strip unless map_latlng.nil?
+  end
+
+  def self.places_for_map
+    places = {}
+    Place.all.each do |place|
+      places[place.id.to_s.to_sym] = {:name=>place.name,:description=>place.description,:place_type=>place.place_type.name,:lat=>place.lat, :lng=>place.lng}
+    end
+    return places
   end
 
 end
