@@ -14,9 +14,7 @@
         Santa Tecla Cultural
       </div>
       <%=yield%>
-      <div data-role = "footer" data-theme = "a" >
-        Creditos.....
-      </div>
+      <%=yield :footer%>
     </div>
 
     <!-- Start of map page -->
@@ -27,9 +25,7 @@
       <div id = "map" data-role = "content" style="margin:0px;height:36em;">
         
       </div>
-      <div data-role = "footer" data-theme = "a" >
-        Creditos.....
-      </div>
+      <%=yield :footer%>
     </div>
     <%= javascript_include_tag "/mobile/js/cordova-2.2.0.js" %>
     <%= javascript_include_tag "/mobile/jquery_mobile/jquery-1.8.3.min.js" %>
