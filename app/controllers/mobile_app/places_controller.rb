@@ -15,7 +15,7 @@ class MobileApp::PlacesController < MobileApp::MobileController
   end
 
   def map
-    @places = Place.all
+    @places = Place.places_for_map
     respond_to do |format|
       format.html
       format.mobile

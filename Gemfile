@@ -14,7 +14,7 @@ gem 'omniauth-facebook'
 gem 'koala'
 gem "twitter-bootstrap-rails"
 gem 'pg'
-
+gem "ckeditor"
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

@@ -1,5 +1,5 @@
 <div data-role= "content">
-	<h1 style = "color:#DADADA;">Bienvenido</h1>
+	<h1>Bienvenido</h1>
 	<div class="ui-grid-a">
 		<div class="ui-block-a">
 			<%=link_to mobile_app_events_path, :class=>"menu-link" do %>
@@ -32,7 +32,23 @@
 					<h3>Galeria</h3>
 				</center>
 			<%end%>
-		</div>	   
+		</div>	
+		<div class="ui-block-a">
+			<%=link_to  mobile_app_info_pages_path, :class=>"menu-link" do %>
+				<center>
+				<%=image_tag "/images/icons/info_pages.png", :class=>"menu-icon" %>
+					<h3>Información</h3>
+				</center>
+			<%end%>
+		</div>
+		<div class="ui-block-b">
+			<%=link_to "", :class=>"menu-link" do %>
+				<center>
+					<%=image_tag "/images/icons/favs.png", :class=>"menu-icon" %>
+					<h3>Favoritos</h3>
+				</center>
+			<%end%>
+		</div>   
 	</div>
 	
  </div>

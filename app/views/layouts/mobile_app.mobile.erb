@@ -7,7 +7,7 @@
     <%= stylesheet_link_tag "/mobile/css/tecla_cultura.css", :media => "all" %>
     <%= stylesheet_link_tag "/mobile/css/photoswipe/photoswipe.css", :media => "all" %>
     <%= csrf_meta_tags %>
-    <meta name="viewport"  content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+    <meta name="viewport"  content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0" />
   <body id = "mobile_body">
     <div data-role = "page" data-theme="a" <%=yield :gallery_page_class%> >
       <div data-role="header" data-theme="a" data-position="fixed">
@@ -22,7 +22,7 @@
       <div data-role="header" data-theme="a" data-position="fixed">
         Santa Tecla Cultural
       </div>
-      <div id = "map" data-role = "content" style="margin:0px;height:36em;">
+      <div id = "map" data-role = "content">
         
       </div>
       <%=yield :footer%>

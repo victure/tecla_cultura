@@ -1,9 +1,11 @@
 TeclaCultura::Application.routes.draw do      
 	
+  mount Ckeditor::Engine => '/ckeditor'
+
   get "home/index"
 
 	namespace :mobile_app do   
-		resources :info_pages, :only=>[:show]
+		resources :info_pages, :only=>[:show,:index]
 		resources :places, :only=>[:show,:index]
 		get "map" => "places#map", :as=>"places_map_location"
 		resources :place_types, :only=>[:show,:index]

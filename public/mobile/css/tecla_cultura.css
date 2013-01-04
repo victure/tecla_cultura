@@ -21,7 +21,6 @@ body.ui-overlay-a{
     text-shadow:none;
     text-align:center;
     min-width:30px;
-    opacity:0.7;
 }
 .calendar-days th{
     min-width:30px;
@@ -93,12 +92,12 @@ body.ui-overlay-a{
     width:100%;
 }
 .calendar-header-long{
-    display:none;
+    display:table-row;
 }
 .calendar-header-short{
+    display:none;
 }
 .calendar-header-short th{
-   width 
 }
 
 .day-buttom{
@@ -120,7 +119,12 @@ body.ui-overlay-a{
     height: 69px;
     width:auto;
 }
-.map{width:100%;}
+#map{
+    width:100%;
+    min-height:2000px;
+    height:100%;
+    margin:0px;
+}
 
 .ui-btn-up-d, .ui-btn-hover-d{opacity:0.9;}
 .ui-page {background: transparent;}
@@ -143,17 +147,63 @@ body.ui-overlay-a{
     color:white;
     text-decoration:none;
 }
+.map{
+    width:90%;
+    margin:10px 5%
+}
+div.map-popup{
+    color: rgb(117, 117, 117);
+    cursor: default;
+    text-shadow: none;
+}
+.map-popup img{
+    display:inline-block;
+    width:20%;
+    height:auto;
+    margin:0px 5px;
+}
+.map-popup h4{
+    margin:0px;
+    padding:0px;
+    text-align:center;
+    display:inline-block;
+}
+.map-popup p{
+    margin:1px 0px;
+    padding:0px;
+    text-align:justify;
+}
 .menu-icon{
     width:50%;
     height:auto;
 }
 a.menu-link, a.menu-link:active, a.menu-link:hover, a.menu-link:visited , .menu-link h3{
-    color:#DADADA;
+    color:white;
     text-decoration:none;
+}
+.ui-block-b a.menu-link h3{
+    color:white;
 }
 .title h3{
     margin:0px;
     text-align:center;
     color: white;
     text-decoration:none;
+}
+
+@media only screen and (max-device-height: 480px) {
+    #map{
+        width:100%;
+        min-height:480px;
+        height:100%;
+        margin:0px;
+    }
+}
+@media only screen and (max-device-width: 433px) {
+    .calendar-header-long{
+        display:none;
+    }
+    .calendar-header-short{
+        display:table-row;
+    }
 }

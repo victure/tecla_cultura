@@ -16,6 +16,7 @@
     <%= stylesheet_link_tag "/bootstrap-plugins/css/bootstrap.min.css", :media => "all" %>
     <%= stylesheet_link_tag "/bootstrap-plugins/css/datepicker.css", :media => "all" %>
     <%= stylesheet_link_tag "/bootstrap-plugins/css/timepicker.css", :media => "all" %>
+    <%= javascript_include_tag "application" %>
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
     <%= favicon_link_tag 'images/apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
@@ -109,19 +110,7 @@
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <%if current_user_signed_in?%>
-          <div class="span3">
-            <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-                <li class="nav-header">Sidebar</li>
-                <li><%= link_to "#{current_user_signed_in?}", "/path1"  %></li>
-                <li><%= link_to "Link2", "/path2"  %></li>
-                <li><%= link_to "Link3", "/path3"  %></li>
-              </ul>
-            </div><!--/.well -->
-          </div><!--/span-->
-        <%end%>
-        <%- yield_span = current_user_signed_in? ? "span9" : "span12"%>
+        <%- yield_span = current_user_signed_in? ? "span10 offset1" : "span12"%>
         <div class="<%=yield_span%>">
           <%= bootstrap_flash  %>
           <%= yield %>
@@ -137,7 +126,6 @@
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <%= javascript_include_tag "application" %>
     <%= javascript_include_tag "/bootstrap-plugins/js/bootstrap.min.js"%>
     <%= javascript_include_tag "/bootstrap-plugins/js/datepicker.js"%>
     <%= javascript_include_tag "/bootstrap-plugins/js/timepicker.js"%>

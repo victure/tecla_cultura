@@ -1,5 +1,5 @@
 <div  data-role="header" >
-  <%=image_tag "/images/album-bb.jpg", :class=>"header-img-left"%>
+  <%=image_tag @place.cover_image.thumb.url, :class=>"header-img-left"%>
   <p style="text-align:center;padding:2px;font-size:15pt"><%=@place.name%></p>
 </div><!-- /header -->  
 

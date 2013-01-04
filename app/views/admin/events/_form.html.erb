@@ -136,6 +136,7 @@
 
   <div class="control-group">
     <%= f.label :flayer, :class => 'control-label' %>
+    <%=image_tag(@event.flayer.thumb.url || "/images/no-image.jpg")%>
     <div class="controls">
       <%= f.file_field :flayer, :class => 'text_field' %>
     </div>

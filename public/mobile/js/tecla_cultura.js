@@ -1,4 +1,31 @@
 var map;
+var markers;
+var map_initialized = false;
+function center_map(map){
+	var bounds = new google.maps.LatLngBounds();
+}
+
+
+function initialize_map(data){
+	map = new GMaps({
+			div: '#map',
+			lat: 13.67527,
+			lng: -89.28572
+		});
+	markers = data; 
+	$.each(data,function(key,value){
+		map.addMarker({
+		lat: value.lat,
+		lng: value.lng,
+		title: value.name,
+		infoWindow: {
+				content: '<div class = "map-popup"><header><img src = "'+value.thumb+'"/><h4>'+value.name+'</h4></header><p>'+value.description+'</p></div>'
+		}
+		});
+	});
+	map.resize
+}
+
 function bind_handlers(){
 	$("#prev-month").live("click",function(){
 		month= $(this).data("month")
@@ -49,22 +76,11 @@ function bind_handlers(){
 
 	$("#map-page").live("pageshow", function(){
 		$.getJSON("/mobile_app/map.json", function(data){
-			map = new GMaps({
-        			div: '#map',
-        			lat: 13.67527,
-        			lng: -89.28572
-      			});
-      		$.each(data,function(key,value){
-      			alert(value.lat)
-      			map.addMarker({
-        			lat: value.lat,
-        			lng: value.lng,
-        			title: value.name,
-        			infoWindow: {
-          				content: '<h4>'+value.name+'</h4></br><p>'+value.description+'</p>'
-        			}
-      			});
-      		})
+			if(!map_initialized){
+				initialize_map(data)
+				map_initialized = true
+			}
+			
 		})
 		return true;
 	})

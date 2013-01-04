@@ -1,5 +1,5 @@
 <div data-role= "content">
-	<ul data-role="listview" data-inset="true" data-theme="b">
+	<ul data-role="listview" data-inset="true" data-theme="d">
 		<%@place_types.each do |type|%>
 			<li><%=link_to type.label_name, mobile_app_places_path(:place_type_id=>type.id)%></li>
 		<%end%>

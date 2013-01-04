@@ -63,7 +63,7 @@
 
 </script>
 <%- action = new_or_edit ? admin_places_path : admin_place_path(:id=>@place.id) %>
-<%= form_for @place, :url=>action,:html => { :class => 'form-horizontal' } do |f| %>
+<%= form_for @place, :url=>action,:html => { :class => 'form-horizontal', :multipart => true  } do |f| %>
   <div class="control-group">
     <%= f.label :place_type_id, :class => 'control-label' %>
     <div class="controls">
@@ -138,6 +138,13 @@
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_area :description, :class => 'text_area' %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :cover_image, :class => 'control-label' %>
+    <%=image_tag(@place.cover_image.thumb.url || "/images/no-image.jpg") %>
+    <div class="controls">
+      <%= f.file_field :cover_image, :class => 'text_field' %>
     </div>
   </div>
 
