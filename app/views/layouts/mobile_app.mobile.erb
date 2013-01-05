@@ -11,7 +11,15 @@
   <body id = "mobile_body">
     <div data-role = "page" data-theme="a" <%=yield :gallery_page_class%> >
       <div data-role="header" data-theme="a" data-position="fixed">
-        Santa Tecla Cultural
+        <%=link_to "Inicio", root_path, :data=>{:icon=>"home"},:id=>"menu-rigth"%>
+        <div id="logo">
+          <%=link_to root_path, :data=>{:role=>"none"} do%>
+            <div id = "image">
+              <%=image_tag("/images/logo.png", :class=>"app-logo")%>
+            </div>
+          <%end%>
+        </div>
+        <%=link_to "Atras", "", :data=>{:icon=>"arrow-l",:rel=>"back"},:id=>"menu-left"%>
       </div>
       <%=yield%>
       <%=yield :footer%>
@@ -20,7 +28,15 @@
     <!-- Start of map page -->
     <div id = "map-page" data-role = "page" data-theme="a">
       <div data-role="header" data-theme="a" data-position="fixed">
-        Santa Tecla Cultural
+        <%=link_to "Inicio", root_path, :data=>{:icon=>"home"},:id=>"menu-rigth"%>
+        <div id="logo">
+          <%=link_to root_path, :data=>{:role=>"none"} do%>
+            <div id = "image">
+              <%=image_tag("/images/logo.png", :class=>"app-logo")%>
+            </div>
+          <%end%>
+        </div>
+        <%=link_to "Atras", "", :data=>{:icon=>"arrow-l",:rel=>"back"},:id=>"menu-left"%>
       </div>
       <div id = "map" data-role = "content">
         

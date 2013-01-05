@@ -3,7 +3,7 @@
   <p style="text-align:center;padding:2px;font-size:15pt"><%=@place.name%></p>
 </div><!-- /header -->  
 
-<div data-role="content">        
+<div data-role="content" class="info-page-content">        
   <div>
     <p><strong><%=@place.address%></strong><br/></p>
   </div>          
@@ -13,15 +13,38 @@
   </div>    
   
   <div>
-    <ul data-role="listview">
+    <ul data-role="listview" data-inset="true">
   		<%unless @place.phone.blank?%>
-  		  <li data-theme="d"><a href="tel:<%=@place.phone%>" data-ajax="false"><%=@place.phone%></a></li>
+  		  <li data-theme="a">
+          <a href="tel:<%=@place.phone%>" data-ajax="false">
+            <img src="/images/icons/phone.png" alt="France" class="ui-li-icon">
+            <%=@place.phone%>
+          </a>
+        </li>
   		<%end%>
   		<%unless @place.web_page.blank?%>
-  		  <li data-theme="d"><a href="<%=@place.web_page%>" data-ajax="false" target="_blank"><%=@place.web_page%></a></li>
+  		  <li data-theme="a">
+          <a href="http://<%=@place.web_page%>" data-ajax="false" target="_blank">
+            <img src="/images/icons/globe.png" alt="France" class="ui-li-icon">
+            <%=@place.web_page%>
+          </a>
+        </li>
   		<%end%>
+      <%unless @place.fanpage.blank?%>
+        <li data-theme="a">
+          <a href="https://www.facebook.com/<%=@place.fanpage%>" data-ajax="false" target="_blank">
+            <img src="/images/icons/facebook.png" alt="France" class="ui-li-icon">
+            <%=@place.fanpage%>
+          </a>
+        </li>
+      <%end%>
   		<%unless @place.twitter_account.blank?%>
-  		  <li data-theme="d"><a href="<%=@place.twitter_full_url%>" data-ajax="false" target="_blank"><%="@#{@place.twitter_account}"%></a></li>
+  		  <li data-theme="a">
+          <a href="<%=@place.twitter_full_url%>" data-ajax="false" target="_blank">
+            <img src="/images/icons/twitterbird.png" alt="France" class="ui-li-icon">
+            <%="@#{@place.twitter_account}"%>
+          </a>
+        </li>
   		<%end%>
   	</ul></br>
   </div>

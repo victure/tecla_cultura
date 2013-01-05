@@ -4,10 +4,44 @@ body.ui-overlay-a{
 	-webkit-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+    color:#BBBBBB;
 }
 
 #calendar-content{
     padding:0px;
+}
+#logo{
+    display:inline-block;
+    width:35%;
+    margin:5px 0px 5px 30%;
+}
+#logo a{
+    color:white;
+    text-decoration:none;
+}
+#logo a:visited{
+    color:white;
+    text-decoration:none;
+}
+#logo a:active{
+    color:white;
+    text-decoration:none;
+}
+#logo a:hover{
+    color:white;
+    text-decoration:none;
+}
+#logo h3{
+    margin:0px;
+    padding:0px;
+    font-size:1em;
+    position:relative;
+}
+#logo .app-logo{
+    width:100%;
+}
+#logo #title{
+    text-align:center;
 }
 .calendar-days{
 	border-spacing: 0px;
@@ -125,7 +159,22 @@ body.ui-overlay-a{
     height:100%;
     margin:0px;
 }
-
+#menu-left{
+    display: inline-block;
+    float: left;
+    left: 0;
+    margin-top: -20%;
+    position: relative;
+    top: 0;
+}
+#menu-rigth{
+    position:relative;
+    display:inline-block;
+    float:right;
+    top:0px;
+    left:0px;
+    margin:8% 5% 0px 0px;
+}
 .ui-btn-up-d, .ui-btn-hover-d{opacity:0.9;}
 .ui-page {background: transparent;}
 .ui-content{background: transparent;}
@@ -190,7 +239,13 @@ a.menu-link, a.menu-link:active, a.menu-link:hover, a.menu-link:visited , .menu-
     color: white;
     text-decoration:none;
 }
-
+.info-page-content{
+    background-color: #DEDEDE;
+    border: 1px solid #BBBBBB;
+    opacity:0.8;
+    color:#484848; 
+    text-shadow:none;
+}
 @media only screen and (max-device-height: 480px) {
     #map{
         width:100%;
