@@ -40,4 +40,25 @@ class MobileApp::EventsController < MobileApp::MobileController
   		#format.json { json: {event: @event} }
   	end
   end
+
+  def attend
+    if current_user_signed_in?
+      print "\nSending to fb from events controller\n"
+      @attended = @current_user.attend_to(params[:event_id])
+      @logged = true
+      session[:login_for_mobile] = false
+      session[:attending_event] = nil
+    else
+      print "\nFail sending to fb from events controller\n"
+      @attended = false
+      @logged = false
+      session[:login_for_mobile] = true
+      session[:attending_event] = params[:event_id]
+    end
+    respond_to do |format|
+      format.html
+      format.mobile
+      format.json { render :json => {attended: @attended, logged: @logged}.to_json }
+    end
+  end
 end

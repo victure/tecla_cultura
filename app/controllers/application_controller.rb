@@ -15,9 +15,10 @@ class ApplicationController < ActionController::Base
 	helper_method :current_user_signed_in?
 
 	def authenticate!
-		print "\nclass=>#{self.class}"
-		unless is_a?(MobileApp::MobileController)
+		print "\ncontroller_name=>#{params[:controller]}\naction_name=>#{params[:action]}\n"
+		if !is_a?(MobileApp::MobileController)
 			if !current_user_signed_in? and !is_a?(SessionsController)
+				@dialog = false
 				redirect_to sign_in_path
 			end
 		end
@@ -34,7 +35,6 @@ class ApplicationController < ActionController::Base
 		Photo.current_user = current_user
 		Place.current_user = current_user
 		PlaceType.current_user = current_user
-		print "\nCurrent User Nil =>#{session[:user_id].nil?}\n"
 	end
 
 	def mobile_device?

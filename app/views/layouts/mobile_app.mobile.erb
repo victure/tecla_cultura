@@ -9,9 +9,9 @@
     <%= csrf_meta_tags %>
     <meta name="viewport"  content="width=device-width,height=device-height,initial-scale=1.0,maximum-scale=1.0" />
   <body id = "mobile_body">
-    <div data-role = "page" data-theme="a" <%=yield :gallery_page_class%> >
+    <div id = "main-page" data-role = "page" data-theme="a" <%=yield :gallery_page_class%> >
       <div data-role="header" data-theme="a" data-position="fixed">
-        <%=link_to "Inicio", root_path, :data=>{:icon=>"home"},:id=>"menu-rigth"%>
+        <%=link_to "Atras", "", :data=>{:icon=>"arrow-l",:rel=>"back"},:id=>"menu-left"%>
         <div id="logo">
           <%=link_to root_path, :data=>{:role=>"none"} do%>
             <div id = "image">
@@ -19,7 +19,7 @@
             </div>
           <%end%>
         </div>
-        <%=link_to "Atras", "", :data=>{:icon=>"arrow-l",:rel=>"back"},:id=>"menu-left"%>
+        <%=link_to "Inicio", root_path, :data=>{:icon=>"home"},:id=>"menu-rigth"%>
       </div>
       <%=yield%>
       <%=yield :footer%>
@@ -38,11 +38,23 @@
         </div>
         <%=link_to "Atras", "", :data=>{:icon=>"arrow-l",:rel=>"back"},:id=>"menu-left"%>
       </div>
-      <div id = "map" data-role = "content">
-        
-      </div>
+      <div id = "map" data-role = "content"></div>
       <%=yield :footer%>
     </div>
+    <!-- End of map page -->
+
+     <a id='openDialog' href="#dialog" data-rel="dialog" data-transition="pop" style='display:none;'></a>
+    
+    <!-- Start of dialog page -->
+    <div data-role="page" id="dialog" data-theme="b">
+      <div data-role="header">
+        
+        <h1>Inicia Sesión</h1>
+      </div>    
+      <div data-role="content" id="dialog-text">
+      </div>    
+    </div>
+    <!-- End of map page -->
     <%= javascript_include_tag "/mobile/js/cordova-2.2.0.js" %>
     <%= javascript_include_tag "/mobile/jquery_mobile/jquery-1.8.3.min.js" %>
     <%= javascript_include_tag "/mobile/jquery_mobile/jquery.mobile-1.2.0.min.js" %>

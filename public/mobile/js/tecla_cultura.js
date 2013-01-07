@@ -27,6 +27,28 @@ function initialize_map(data){
 }
 
 function bind_handlers(){
+	$(".attend-btn").live("click",function(){
+		console.log("Attending event....")
+		var event_id = $(this).data("event");
+		$.post("/mobile_app/event/"+event_id+"/attend.json", function(data) {
+			console.log(data);
+			if(data.attended){
+				$.mobile.changePage( "/", { transition: "slideup",reverse: true} );
+			}
+			else{
+				if(!data.logged){
+					window.location.replace("/auth/facebook");
+				}
+				else{
+					$.mobile.showPageLoadingMsg( $.mobile.pageLoadErrorMessageTheme, "Error en conexion con Facebook", true );
+					setTimeout( $.mobile.hidePageLoadingMsg, 1500 );
+				}
+
+			}
+		});
+		return false
+	})
+
 	$("#prev-month").live("click",function(){
 		month= $(this).data("month")
 		route = $(this).attr("href") + "&month=" + month 

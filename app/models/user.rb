@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
 	    user.name = auth.info.name
 	    user.oauth_token = auth.credentials.token
 	    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-	    user.name = auth.name
 	    user.image = auth.image
 	    user.is_admin = FACEBOOK_ADMINS.include?(auth.uid)
 	    user.save!
@@ -94,6 +93,11 @@ class User < ActiveRecord::Base
 		photos.each do |photo|
 			graph.put_picture(photo.file_path, {:message => photo.description}, photo.gallery.fb_oid) 
 		end
+	end
+
+	def attend_to(event_id)
+		event = Event.find(event_id) 
+		result = graph.put_connections(event.fb_oid,"attending")
 	end
 
 

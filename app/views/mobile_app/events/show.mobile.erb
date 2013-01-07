@@ -1,4 +1,4 @@
-<div data-role="content">        
+<div data-role="content" class="info-page-content">        
 
   <center><h2><%=@event.name%></h2></center>
   <%=image_tag @event.flayer.url, :style=>"width:100%;height:auto;"%>
@@ -16,4 +16,7 @@
   </div>    
   
   <img src="http://maps.google.com/maps/api/staticmap?zoom=<%=@event.zoom%>&amp;size=250x200&amp;maptype=roadmap&amp;markers=color:red|label:|<%=@event.latlng%>&amp;sensor=false" class="map">
+  <div class="ui-grid-solo">
+    <div class="ui-block-a"><%=link_to "Asistir", mobile_app_attend_event_path(:event_id=>@event.id, :format=>:json), :method => :post,:data=>{:role=>"button", :event=>@event.id}, :class=>"attend-btn" %></div>
+  </div>
 </div>

@@ -13,6 +13,7 @@ body.ui-overlay-a{
 #logo{
     display:inline-block;
     width:35%;
+    max-width:150px;
     margin:5px 0px 5px 30%;
 }
 #logo a{
@@ -163,8 +164,8 @@ body.ui-overlay-a{
     display: inline-block;
     float: left;
     left: 0;
-    margin-top: -20%;
     position: relative;
+    margin:40px 0% 0px 0px;
     top: 0;
 }
 #menu-rigth{
@@ -173,11 +174,10 @@ body.ui-overlay-a{
     float:right;
     top:0px;
     left:0px;
-    margin:8% 5% 0px 0px;
+    margin:40px 5% 0px 0px;
 }
 .ui-btn-up-d, .ui-btn-hover-d{opacity:0.9;}
-.ui-page {background: transparent;}
-.ui-content{background: transparent;}
+#main-page {background: transparent;}
 
 .ui-listview .ui-btn-up-b {
     background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
@@ -198,7 +198,8 @@ body.ui-overlay-a{
 }
 .map{
     width:90%;
-    margin:10px 5%
+    margin:10px 5%;
+    opacity:1;
 }
 div.map-popup{
     color: rgb(117, 117, 117);
@@ -261,4 +262,11 @@ a.menu-link, a.menu-link:active, a.menu-link:hover, a.menu-link:visited , .menu-
     .calendar-header-short{
         display:table-row;
     }
+    #menu-left, #menu-rigth{
+        margin-top:25px;
+    }
+    #logo{
+        margin:5px 0px 5px 5%;
+    }
+
 }

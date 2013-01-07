@@ -11,14 +11,19 @@ TeclaCultura::Application.routes.draw do
 		resources :place_types, :only=>[:show,:index]
 		resources :galleries, :only=>[:show,:index]
 		resources :events, :only=>[:show,:index]
+		post "event/:event_id/attend/" => "events#attend", :as => "attend_event"
 		root :to => "home#index"
 	end
      
 	match 'auth/:provider/callback', to: 'sessions#create'
 	match 'auth/failure', to: redirect('/')
+	scope "mobile_app" do
+		get "sign_in" => "sessions#new",  as: "mobile_sign_in"
+	  	delete 'sign_out', to: 'sessions#destroy', as: 'mobile_sign_out'
+	end
 	scope "admin" do
 		get "sign_in" => "sessions#new"
-	  	match 'sign_out', to: 'sessions#destroy', as: 'sign_out'
+	  	delete 'sign_out', to: 'sessions#destroy', as: 'sign_out'
 	end
 	                             
 	root :to =>"mobile_app/home#index"
