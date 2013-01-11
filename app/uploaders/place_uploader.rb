@@ -4,7 +4,7 @@ class PlaceUploader < CarrierWave::Uploader::Base
 
 
   include CarrierWave::RMagick
-  storage :file
+  storage :fog
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{model.name}/#{model.id}"

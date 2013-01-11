@@ -3,7 +3,7 @@
 class PhotoUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
-  storage :file
+  storage :fog
 
   def store_dir
     "uploads/galleries/#{model.gallery.name}/#{model.id}"

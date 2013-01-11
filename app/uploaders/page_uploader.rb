@@ -3,7 +3,7 @@
 class PageUploader < CarrierWave::Uploader::Base
 
 include CarrierWave::RMagick
-  storage :file
+  storage :fog
 
   def store_dir
     "uploads/pages/#{model.name}/cover"
