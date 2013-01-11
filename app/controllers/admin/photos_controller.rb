@@ -46,7 +46,9 @@ class Admin::PhotosController < ApplicationController
   def multiple_create
     @photo = Photo.new(params[:photo])
     @photo.gallery_id = @gallery.id
-    @photo.save
+    if @photo.save
+      current_user.upload_photo(@photo)
+    end
   end
 
   # DELETE /photos/1

@@ -3,7 +3,6 @@ class Photo < ActiveRecord::Base
   attr_accessible :description, :picture_file, :gallery_id
   belongs_to :gallery
   mount_uploader :picture_file, PhotoUploader
-  after_create :upload_to_facebook
   before_destroy do |photo|
     photo.remove_picture_file
   end
@@ -13,7 +12,7 @@ class Photo < ActiveRecord::Base
   end
 
   def file_path
-  	"#{Rails.root.to_s}/public#{self.picture_file}"
+  	picture_file.url
   end
 
   protected

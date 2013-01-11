@@ -24,24 +24,27 @@ class User < ActiveRecord::Base
 	end
 
 	def create_fb_event(event)
-		print "\nfb_oid.nil=>#{event.fb_oid.nil?}\n"
-		if event.fb_oid.nil?
-			print "\n=======>Crando Envento en Facebook....<=======\n"
-			path = "#{Rails.root.to_s}/public#{event.flayer.url}"
-			picture = Koala::UploadableIO.new(File.open(path))
-			params = {
-			    :picture => picture,
-			    :name => event.name,
-			    :description => event.description,
-			    :start_time => event.date_at,
-			    :location => event.location 
-			}
-			fb_oid = graph.put_object('me', 'events', params )
-			print "\nfb_oid=>#{fb_oid}\n"
-			event.fb_oid = fb_oid["id"]
-			event.save
-			invite_friends(event)
+		begin
+			print "\nfb_oid.nil=>#{event.fb_oid.nil?}\n"
+			if event.fb_oid.nil?
+				print "\n=======>Crando Envento en Facebook....<=======\n"
+				params = {
+				    :picture => event.flayer.url,
+				    :name => event.name,
+				    :description => event.description,
+				    :start_time => event.date_at,
+				    :location => event.location 
+				}
+				fb_oid = graph.put_object('me', 'events', params )
+				print "\nfb_oid=>#{fb_oid}\n"
+				event.fb_oid = fb_oid["id"]
+				event.save
+				invite_friends(event)
+			end
+		rescue
+			print "\nFail Publishing event to facebook\n"
 		end
+		
 	end
 
 	def update_fb_event(event,changes)
@@ -85,8 +88,15 @@ class User < ActiveRecord::Base
 	end
 
 	def upload_photo(photo) 
-		path = photo.file_path
-		graph.put_picture(photo.file_path, {:message => photo.description}, photo.gallery.fb_oid)
+		begin
+			path = photo.file_path
+			print"\nSubiendo foto a facebook...\n"
+			print"\nurl=>#{photo.file_path}...\n"
+			graph.put_picture(photo.file_path, {:message => photo.description}, photo.gallery.fb_oid)
+		rescue
+			print "\nfail uploading=>#{photo.file_path}...\n"
+		end
+		
 	end
 
 	def upload_photos(photos)

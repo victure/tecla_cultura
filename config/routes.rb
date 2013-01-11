@@ -23,7 +23,7 @@ TeclaCultura::Application.routes.draw do
 	end
 	scope "admin" do
 		get "sign_in" => "sessions#new"
-	  	delete 'sign_out', to: 'sessions#destroy', as: 'sign_out'
+	  	get 'sign_out', to: 'sessions#destroy', as: 'sign_out'
 	end
 	                             
 	root :to =>"mobile_app/home#index"
