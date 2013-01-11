@@ -8,8 +8,7 @@ gem 'therubyracer'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem "mini_magick"
-gem "rmagick"
+gem "rmagick", :require => 'RMagick'
 gem 'carrierwave'
 gem 'fog'
 gem 'omniauth-facebook'
