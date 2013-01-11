@@ -96,8 +96,12 @@ class User < ActiveRecord::Base
 	end
 
 	def attend_to(event_id)
-		event = Event.find(event_id) 
-		result = graph.put_connections(event.fb_oid,"attending")
+		begin
+			event = Event.find(event_id) 
+			result = graph.put_connections(event.fb_oid,"attending")
+		rescue Koala::Facebook::APIError
+			result = false
+		end
 	end
 
 
