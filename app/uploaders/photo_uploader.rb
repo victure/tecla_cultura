@@ -1,8 +1,8 @@
 # encoding: utf-8
 
 class PhotoUploader < CarrierWave::Uploader::Base
-
-  include CarrierWave::RMagick
+  
+  include CarrierWave::MiniMagick
   storage :fog
 
   def store_dir

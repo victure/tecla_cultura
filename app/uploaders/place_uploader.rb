@@ -2,7 +2,6 @@
 
 class PlaceUploader < CarrierWave::Uploader::Base
 
-
   include CarrierWave::RMagick
   storage :fog
 
