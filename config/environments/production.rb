@@ -65,6 +65,8 @@ TeclaCultura::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.gem "rmagick",:lib => "RMagick" 
 end
 FACEBOOK_APP_ID = "153883314757374"
 FACEBOOK_SECRET = "eccad5a10b7d107645248a9db90df305"
