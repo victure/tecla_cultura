@@ -10,6 +10,7 @@ gem 'therubyracer'
 gem 'mysql2'
 gem "rmagick"
 gem 'carrierwave'
+gem 'fog'
 gem 'omniauth-facebook'
 gem 'koala'
 gem "twitter-bootstrap-rails"
