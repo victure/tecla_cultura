@@ -5,6 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Photo.where("id!=3").each do |photo|
-	photo.destroy
+
+
+if PlaceType.all.length == 0
+	PlaceType.create([{ name: 'Restaurantes', label_name: "Donde Comer" }, { name: 'Hospedaje y Alojamiento', label_name: "Donde Dormir" }, { name: 'Espacios Culturales', label_name: "Donde ir" }, { name: 'Bares y vida nocturna', label_name: "Donde Disfrutar" }])
 end

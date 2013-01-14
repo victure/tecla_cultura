@@ -28,8 +28,10 @@ class User < ActiveRecord::Base
 			print "\nfb_oid.nil=>#{event.fb_oid.nil?}\n"
 			if event.fb_oid.nil?
 				print "\n=======>Crando Envento en Facebook....<=======\n"
+				f = open(URI.parse(URI.encode(event.flayer.url)))
+				picture = Koala::UploadableIO.new(f.path, 'image')
 				params = {
-				    :picture => event.flayer.url,
+				    :picture => picture,
 				    :name => event.name,
 				    :description => event.description,
 				    :start_time => event.date_at,
@@ -89,19 +91,20 @@ class User < ActiveRecord::Base
 
 	def upload_photo(photo) 
 		begin
-			path = photo.file_path
-			print"\nSubiendo foto a facebook...\n"
-			print"\nurl=>#{photo.file_path}...\n"
-			graph.put_picture(photo.file_path, {:message => photo.description}, photo.gallery.fb_oid)
-		rescue
-			print "\nfail uploading=>#{photo.file_path}...\n"
+			print "\nSubiendo foto a facebook...\n"
+			f = open(URI.parse(URI.encode(photo.picture_file.url)))
+			mime = MIME::Types.type_for(photo.picture_file.url).first.content_type
+			graph.put_picture f,mime,{:message => photo.description}, photo.gallery.fb_oid
+		rescue Exception => e 
+			print "\nfail uploading photo\n"
+			print "Error=>#{e}\n"
 		end
 		
 	end
 
 	def upload_photos(photos)
 		photos.each do |photo|
-			graph.put_picture(photo.file_path, {:message => photo.description}, photo.gallery.fb_oid) 
+			graph.put_picture(photo.file_path, {:message => photo[:description]}, photo.gallery.fb_oid) 
 		end
 	end
 

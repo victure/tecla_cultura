@@ -49,7 +49,7 @@ class Admin::EventsController < ApplicationController
     @event.start_at = DateTime.parse("#{params[:event][:date_at]} #{params[:event][:start_at]} -0600")
     respond_to do |format|
       if @event.save
-        @current_user.create_fb_event(@event) if @current_user.is_admin
+        @current_user.delay.create_fb_event(@event) if @current_user.is_admin
         format.html { redirect_to admin_events_path, notice: 'Event was successfully created.' }
         format.json { render json: @event, status: :created, location: @event }
       else
@@ -71,7 +71,7 @@ class Admin::EventsController < ApplicationController
     print "\nchanges_to_fb antes de guardar=>#{changes}\n"
     respond_to do |format|
       if @event.save
-        #change_to_fb = @current_user.update_fb_event(@event,changes) if !changes.empty?
+        change_to_fb = @current_user.delay.update_fb_event(@event,changes) if !changes.empty?
         print "\nSe cambio el de facebook=>#{change_to_fb}\n"
         format.html { redirect_to admin_events_path, notice: 'Event was successfully updated.' }
         format.json { head :no_content }

@@ -45,7 +45,7 @@ class Admin::GalleriesController < ApplicationController
 
     respond_to do |format|
       if @gallery.save
-        @current_user.create_album(@gallery)
+        @current_user.delay.create_album(@gallery)
         format.html { redirect_to new_admin_photo_path(:multiple=>true,:gallery_id=>@gallery.id), notice: 'Gallery was successfully created.' }
         format.json { render json: {:id=>@gallery.id,:multiple=>true}, status: :created, location: @gallery }
       else

@@ -47,7 +47,7 @@ class Admin::PhotosController < ApplicationController
     @photo = Photo.new(params[:photo])
     @photo.gallery_id = @gallery.id
     if @photo.save
-      current_user.upload_photo(@photo)
+      @current_user.delay.upload_photo(@photo)
     end
   end
 

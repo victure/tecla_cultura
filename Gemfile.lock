@@ -44,6 +44,12 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    daemons (1.1.9)
+    delayed_job (3.0.4)
+      activesupport (~> 3.0)
+    delayed_job_active_record (0.3.3)
+      activerecord (>= 2.1.0, < 4)
+      delayed_job (~> 3.0)
     erubis (2.7.0)
     excon (0.16.10)
     execjs (1.4.0)
@@ -174,6 +180,8 @@ DEPENDENCIES
   carrierwave
   ckeditor
   coffee-rails (~> 3.2.1)
+  daemons
+  delayed_job_active_record
   execjs
   fog
   jquery-fileupload-rails
