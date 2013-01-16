@@ -19,6 +19,7 @@ gem "ckeditor"
 gem "mini_magick"
 gem 'daemons'
 gem 'delayed_job_active_record'
+gem 'newrelic_rpm'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -40,8 +41,9 @@ gem 'jquery-rails'
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
-# Use unicorn as the app server
-# gem 'unicorn'
+group :production do
+  gem 'unicorn'
+end
 
 # Deploy with Capistrano
 # gem 'capistrano'
