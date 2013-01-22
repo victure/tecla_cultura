@@ -13,8 +13,8 @@ if Rails.env.development? or Rails.env.production? # Using Amazon S3 for Develop
     config.storage = :fog
     config.fog_credentials = {
         :provider => 'AWS', # required
-        :aws_access_key_id => 'AKIAJIIVXDSJTKRBHOEA', # required
-        :aws_secret_access_key => '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', # required
+        :aws_access_key_id => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXX', # required
+        :aws_secret_access_key => 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX', # required
     }
     config.fog_directory = 'tecla_cultura' # required
   end
