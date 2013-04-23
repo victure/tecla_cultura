@@ -1,6 +1,10 @@
 <div  data-role="header" >
-  <%=image_tag @place.cover_image.thumb.url, :class=>"header-img-left"%>
-  <p style="text-align:center;padding:2px;font-size:15pt"><%=@place.name%></p>
+  <div class="place-header-icon" style ="display:inline-block">
+    <%=image_tag @place.cover_image.thumb.url, :class=>"header-img-left"%>
+  </div>
+  <div class="place-header-title" style ="display:inline-block; vertical-align: top;">
+    <p style="text-align:center;padding:2px;font-size:15pt"><%=@place.name%></p>
+  </div>
 </div><!-- /header -->  
 
 <div data-role="content" class="info-page-content">        

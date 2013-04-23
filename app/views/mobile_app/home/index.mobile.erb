@@ -4,51 +4,46 @@
 		<div class="ui-block-a">
 			<%=link_to mobile_app_events_path, :class=>"menu-link" do %>
 				<center>
-				<%=image_tag "/images/icons/calendar.png", :class=>"menu-icon" %>
 					<h3>Agenda Cultural</h3>
+					<%=image_tag "/images/icons/calendar.png", :class=>"menu-icon" %>
 				</center>
 			<%end%>
 		</div>
 		<div class="ui-block-b">
 			<%=link_to mobile_app_place_types_path, :class=>"menu-link" do %>
 				<center>
-					<%=image_tag "/images/icons/places.png", :class=>"menu-icon" %>
 					<h3>Escondites</h3>
+					<%=image_tag "/images/icons/places.png", :class=>"menu-icon" %>
 				</center>
 			<%end%>
 		</div>
-		<div class="ui-block-a">
-	    	<a href="#map-page" class = "menu-link">
-				<center>
-					<%=image_tag "/images/icons/map.png", :class=>"menu-icon" %>
-					<h3>Mapa</h3>
-				</center>
-			</a>
-		</div>
-		<div class="ui-block-b">
-			<%=link_to mobile_app_galleries_path, :class=>"menu-link" do%>
-				<center>
-					<%=image_tag "/images/icons/gallery.png", :class=>"menu-icon" %>
-					<h3>Galeria</h3>
-				</center>
-			<%end%>
-		</div>	
 		<div class="ui-block-a">
 			<%=link_to  mobile_app_info_pages_path, :class=>"menu-link" do %>
 				<center>
-				<%=image_tag "/images/icons/info_pages.png", :class=>"menu-icon" %>
 					<h3>Información</h3>
+					<%=image_tag "/images/icons/info_pages.png", :class=>"menu-icon" %>
 				</center>
 			<%end%>
 		</div>
+		
 		<div class="ui-block-b">
-			<%=link_to "", :class=>"menu-link" do %>
+			<%=link_to mobile_app_galleries_path, :class=>"menu-link" do%>
 				<center>
-					<%=image_tag "/images/icons/favs.png", :class=>"menu-icon" %>
-					<h3>Favoritos</h3>
+					<h3>Galeria</h3>
+					<%=image_tag "/images/icons/gallery.png", :class=>"menu-icon" %>
 				</center>
 			<%end%>
-		</div>   
+		</div>	
+	</div>
+	<div class="ui-grid-solo">
+		<div class="ui-block-a">
+	    	<a href="#map-page" class = "menu-link">
+				<center>
+					<h3>Mapa</h3>
+					<%=image_tag "/images/icons/map.png", :class=>"menu-icon" %>
+				</center>
+			</a>
+		</div>
 	</div>
 	
  </div>

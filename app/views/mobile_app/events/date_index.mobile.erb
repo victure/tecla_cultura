@@ -3,7 +3,7 @@
   <ul data-role="listview" data-theme="d" data-divider-theme="d">
     <%@events.each do |event|%>
       <li>
-        <%=link_to mobile_app_event_path(:id=>event.id) do%>
+        <%=link_to "#events-show", :data=>{:backend=>mobile_app_event_url(:id=>event.id)}. :class=>"backend-link"  do%>
           <h3><%=event.name%></h3>
           <p><%=event.description%></p>
           <p class="ui-li-aside"><strong><%=event.start_at.strftime("%l:%m %p")%></strong></p>

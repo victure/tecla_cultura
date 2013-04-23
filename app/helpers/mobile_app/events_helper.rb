@@ -4,12 +4,15 @@ module MobileApp::EventsHelper
   end
 
   def calendar_weeks(date = Date.today, &block)
-    print "\ndate recieve=>#{date.to_s}\n"
     Calendar.new(self, date, block).week_rows
   end
 
   def new_calendar(date = Date.today, &block)
     Calendar.new(self, date, block)
+  end
+
+
+  def link_for_event
   end
 
   class Calendar < Struct.new(:view, :date, :callback)
@@ -69,7 +72,7 @@ module MobileApp::EventsHelper
           view.capture(day, &callback)
         end
       else
-        link_to mobile_app_events_path(:date_at=>day), :class=>"day-link" do
+        link_to "#events-date", :data=>{:backend=>mobile_app_events_url(:date_at=>day)}, :class=>"day-link backend-link" do
           content_tag :div, class: "day-buttom day-buttom-link" do
             view.capture(day, &callback)
           end
