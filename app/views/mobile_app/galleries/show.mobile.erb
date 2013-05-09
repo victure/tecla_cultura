@@ -1,12 +1,12 @@
 <%=content_for :gallery_page_class do%>
 	<%="class = gallery-page"%>
 <%end%>
-<div id = "Gallery" data-role="content">	
+<div id = "Gallery" data-role="content" class= "page_content">	
 	<ul id="gallery" class="gallery">
 		<%@gallery.photos.each do |photo|%>
 			<li>
 				<%=link_to photo.picture_file.url, :rel=>"external" do %>	
-					<%=image_tag photo.picture_file.url :alt=>"Image #{photo.default_name}"%>
+					<%=image_tag photo.picture_file.thumb.url :alt=>"Image #{photo.default_name}"%>
 				<%end%>
 			</li>
 		<%end%>

@@ -3,7 +3,14 @@
 class PageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::MiniMagick
-  storage :fog
+  
+  # Elegir que tipo de almacenamiento se va utilizar:
+  # :file se utiliza el sistema de archivos del servidor donde se hostea la aplicacion
+  # :fog se utiliza para algun almacenamiento remoto como aws o rackspace
+  #      si se quiere utilizar aws-s3 para almacenamiento remote ver el archivo carrierwave.rb dentro de config/initializers
+  storage :file
+  #storage :fog
+
 
   def store_dir
     "uploads/pages/#{model.name}/cover"

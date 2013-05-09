@@ -20,7 +20,7 @@ module MobileApp::EventsHelper
     HEADER_LONG = %w[Domingo Lunes Martes Miercoles Jueves Viernes Sabado]
     START_DAY = :sunday
 
-    delegate :content_tag, :link_to, :mobile_app_events_path ,to: :view
+    delegate :content_tag, :link_to, :mobile_app_events_url ,to: :view
 
     def calendar_with_header
     	content_tag :div, class: "calendar-body" do

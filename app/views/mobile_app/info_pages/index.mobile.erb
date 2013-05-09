@@ -1,8 +1,8 @@
-<div data-role= "content">
+<div data-role= "content" class= "page_content">
 	<ul data-role="listview" data-inset="false" data-theme="d">
 		<%@pages.each do |page|%>
 			<li>
-			  	<%=link_to "#info-page-show", :data=>{:banckend=>mobile_app_info_page_url(:id=>page.id)} , :class=>"backend-link" do %>
+			  	<%=link_to "#info-page-show", :data=>{:backend=>mobile_app_info_page_url(:id=>page.id)} , :class=>"backend-link" do %>
 			  		<%=image_tag page.cover_image.thumb.url %>
 			  		<h3><%=page.name%></h3>
 			      <p><%=page.description%></p>

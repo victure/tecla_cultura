@@ -7,7 +7,7 @@
   </div>
 </div><!-- /header -->  
 
-<div data-role="content" class="info-page-content">        
+<div data-role="content" class="page_content info-page-content">        
   <div>
     <p><strong><%=@place.address%></strong><br/></p>
   </div>          
@@ -21,7 +21,7 @@
   		<%unless @place.phone.blank?%>
   		  <li data-theme="a">
           <a href="tel:<%=@place.phone%>" data-ajax="false">
-            <img src="/images/icons/phone.png" alt="France" class="ui-li-icon">
+            <img src="images/icons/phone.png" alt="France" class="ui-li-icon">
             <%=@place.phone%>
           </a>
         </li>
@@ -29,7 +29,7 @@
   		<%unless @place.web_page.blank?%>
   		  <li data-theme="a">
           <a href="http://<%=@place.web_page%>" data-ajax="false" target="_blank">
-            <img src="/images/icons/globe.png" alt="France" class="ui-li-icon">
+            <img src="images/icons/globe.png" alt="France" class="ui-li-icon">
             <%=@place.web_page%>
           </a>
         </li>
@@ -37,7 +37,7 @@
       <%unless @place.fanpage.blank?%>
         <li data-theme="a">
           <a href="https://www.facebook.com/<%=@place.fanpage%>" data-ajax="false" target="_blank">
-            <img src="/images/icons/facebook.png" alt="France" class="ui-li-icon">
+            <img src="images/icons/facebook.png" alt="France" class="ui-li-icon">
             <%=@place.fanpage%>
           </a>
         </li>
@@ -45,7 +45,7 @@
   		<%unless @place.twitter_account.blank?%>
   		  <li data-theme="a">
           <a href="<%=@place.twitter_full_url%>" data-ajax="false" target="_blank">
-            <img src="/images/icons/twitterbird.png" alt="France" class="ui-li-icon">
+            <img src="images/icons/twitterbird.png" alt="France" class="ui-li-icon">
             <%="@#{@place.twitter_account}"%>
           </a>
         </li>

@@ -1,62 +1,19 @@
-<div data-role = "content">
+<div data-role = "content" class= "page_content">
 	<div class="ui-grid-c">
 		<%@galleries_groups.each do |group|%>
 			<%for i in 0..3%>
-				<%case i%>
-					<%when 0%>
-						<%if group[i]%>
-							<div class="ui-block-a gallery-cell">
-								<%=link_to "#gallery-show", :data=>{:backend=>mobile_app_gallery_url(:id=>group[i].id)}, :class=>"backend-link"  do%>
-									<div class = "cover">
-										<%=image_tag group[i].cover_photo.picture_file.url, :style=>"height:auto; width:100%;"%>
-									</div>
-									<div class = "title">
-										<h3><%=group[i].name%></h3>
-									</div>
-								<%end%>
+				<%if group[i]%>
+					<div class="<%=@grid_columns[i]%> gallery-cell">
+						<%=link_to "#gallery-show", :data=>{:backend=>mobile_app_gallery_url(:id=>group[i].id)}, :class=>"backend-link"  do%>
+							<div class = "cover">
+								<%=group[i].cover_photo ?  image_tag(group[i].cover_photo.picture_file.thumb.url, :style=>"height:auto; width:100%;") : "<img src = 'images/no-image.jpg' style = 'height:auto; width:100%;'>".html_safe %>
+							</div>
+							<div class = "title">
+								<h3><%=group[i].name%></h3>
 							</div>
 						<%end%>
-					<%when 1%>
-						<%if group[i]%>
-							<div class="ui-block-a gallery-cell">
-								<%=link_to "#gallery-show", :data=>{:backend=>mobile_app_gallery_url(:id=>group[i].id)}, :class=>"backend-link"  do%>
-									<div class = "cover">
-										<%=image_tag group[i].cover_photo.picture_file.url, :style=>"height:auto; width:100%;"%>
-									</div>
-									<div class = "title">
-										<h3><%=group[i].name%></h3>
-									</div>
-								<%end%>
-							</div>
-						<%end%>
-					<%when 2%>
-						<%if group[i]%>
-							<div class="ui-block-a gallery-cell">
-								<%=link_to "#gallery-show", :data=>{:backend=>mobile_app_gallery_url(:id=>group[i].id)}, :class=>"backend-link"  do%>
-									<div class = "cover">
-										<%=image_tag group[i].cover_photo.picture_file.url, :style=>"height:auto; width:100%;"%>
-									</div>
-									<div class = "title">
-										<h3><%=group[i].name%></h3>
-									</div>
-								<%end%>
-							</div>
-						<%end%>
-					<%when 3%>
-						<%if group[i]%>
-							<div class="ui-block-a gallery-cell">
-								<%=link_to "#gallery-show", :data=>{:backend=>mobile_app_gallery_url(:id=>group[i].id)}, :class=>"backend-link"  do%>
-									<div class = "cover">
-										<%=image_tag group[i].cover_photo.picture_file.url, :style=>"height:auto; width:100%;"%>
-									</div>
-									<div class = "title">
-										<h3><%=group[i].name%></h3>
-									</div>
-								<%end%>
-							</div>
-						<%end%>
+					</div>
 				<%end%>
-				
 			<%end%>
 		<%end%>
 	</div>

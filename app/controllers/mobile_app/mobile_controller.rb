@@ -9,4 +9,6 @@ class MobileApp::MobileController < ApplicationController
 	def load_layout
 		params[:layout]=="true" ? "mobile_app" : false
 	end
+
+	
 end

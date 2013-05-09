@@ -1,7 +1,7 @@
-<div data-role= "content">
+<div data-role= "content" class= "page_content">
 	<ul data-role="listview" data-inset="true" data-theme="d">
 		<%@place_types.each do |type|%>
-			<li><%=link_to type.label_name, "#place-index", :data=>{:banckend=>mobile_app_places_url(:place_type_id=>type.id)}, :class=>"backend-link" %></li>
+			<li><%=link_to type.label_name, "#place-index", :data=>{:backend=>mobile_app_places_url(:place_type_id=>type.id)}, :class=>"backend-link" %></li>
 		<%end%>
 	<ul>
 </div>

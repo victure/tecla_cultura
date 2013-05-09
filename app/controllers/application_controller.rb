@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   	layout :load_layout
   	before_filter :authenticate!
   	before_filter :load_user_to_models
-  	def current_user
+		after_filter :set_access_control_headers
+  def current_user
   		@current_user =  User.find_by_id(session[:user_id]) 
 	end
 	helper_method :current_user
@@ -21,6 +22,12 @@ class ApplicationController < ActionController::Base
 				@dialog = false
 				redirect_to sign_in_path
 			end
+		end
+	end
+
+	def load_settings
+		if !is_a?(MobileApp::MobileController)
+			
 		end
 	end
 
@@ -54,5 +61,9 @@ class ApplicationController < ActionController::Base
 	def prepare_for_mobile
 		session[:mobile_param] = params[:mobile] if params[:mobile]
 		request.format = :mobile if mobile_device?
+	end
+	def set_access_control_headers 
+		headers['Access-Control-Allow-Origin'] = '*' 
+		headers['Access-Control-Request-Method'] = '*' 
 	end
 end
